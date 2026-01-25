@@ -2945,6 +2945,27 @@
 		    if (totalPlayers > 0) {
 		        renderPlayersList();
 		    }
+
+		    html += `
+		        <div style="background: #2c3e50; border-left: 4px solid #9b59b6; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
+		            <h4>🌐 GitHub Spelers</h4>
+		            <p style="color: #bdc3c7; font-size: 0.9em; margin: 5px 0;">
+		                Spelers worden geladen van <code>spelers.json</code> in je GitHub repository.
+		                Wijzigingen moet je handmatig in GitHub aanpassen.
+		            </p>
+		            <div style="display: flex; gap: 10px; margin-top: 10px;">
+		                <button onclick="refreshPlayersFromGitHub()" 
+		                        style="background: #9b59b6; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">
+		                    🔄 Herlaad van GitHub
+		                </button>
+		                <a href="https://github.com/Angello8647/biljart-app/edit/main/spelers.json" 
+		                   target="_blank"
+		                   style="background: #3498db; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; text-decoration: none;">
+		                    ✏️ Bewerk op GitHub
+		                </a>
+		            </div>
+		        </div>
+		    `;
 		}
 		
 		function renderPlayersList() {
@@ -3387,6 +3408,7 @@
     </script>
 </body>
 </html>
+
 
 
 
