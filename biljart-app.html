@@ -721,6 +721,251 @@
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
+
+		/* ========== SPELERS BEHEER STIJLEN ========== */
+		.players-management-container {
+		    padding: 20px;
+		}
+		
+		.player-form-container {
+		    background: #34495e;
+		    border-radius: 10px;
+		    padding: 20px;
+		    margin-bottom: 30px;
+		    border-left: 4px solid #3498db;
+		}
+		
+		.player-form-container h3 {
+		    color: #3498db;
+		    margin-bottom: 20px;
+		}
+		
+		.form-row {
+		    display: grid;
+		    grid-template-columns: 1fr 1fr 1fr auto;
+		    gap: 15px;
+		    margin-bottom: 15px;
+		    align-items: end;
+		}
+		
+		.form-group {
+		    display: flex;
+		    flex-direction: column;
+		}
+		
+		.form-group label {
+		    margin-bottom: 8px;
+		    color: #bdc3c7;
+		    font-size: 0.9em;
+		}
+		
+		.form-input {
+		    padding: 12px;
+		    border-radius: 6px;
+		    border: 2px solid #3498db;
+		    background: #2c3e50;
+		    color: white;
+		    font-size: 16px;
+		}
+		
+		.form-input:focus {
+		    outline: none;
+		    border-color: #2ecc71;
+		}
+		
+		.add-player-btn {
+		    background: #2ecc71;
+		    color: white;
+		    border: none;
+		    padding: 12px 25px;
+		    border-radius: 6px;
+		    cursor: pointer;
+		    font-size: 16px;
+		    font-weight: bold;
+		    height: 44px;
+		    transition: all 0.3s;
+		}
+		
+		.add-player-btn:hover {
+		    background: #27ae60;
+		    transform: translateY(-2px);
+		}
+		
+		.players-list-container {
+		    background: #34495e;
+		    border-radius: 10px;
+		    padding: 20px;
+		}
+		
+		.players-list-header {
+		    display: grid;
+		    grid-template-columns: 2fr 1fr 1fr auto;
+		    gap: 15px;
+		    padding: 15px;
+		    background: #2c3e50;
+		    border-radius: 8px;
+		    margin-bottom: 10px;
+		    font-weight: bold;
+		    color: #3498db;
+		}
+		
+		.player-row {
+		    display: grid;
+		    grid-template-columns: 2fr 1fr 1fr auto;
+		    gap: 15px;
+		    padding: 15px;
+		    background: rgba(255,255,255,0.05);
+		    border-radius: 8px;
+		    margin-bottom: 10px;
+		    align-items: center;
+		    transition: all 0.3s;
+		}
+		
+		.player-row:hover {
+		    background: rgba(255,255,255,0.1);
+		}
+		
+		.player-row.editing {
+		    background: rgba(52, 152, 219, 0.1);
+		    border: 2px solid #3498db;
+		}
+		
+		.player-actions {
+		    display: flex;
+		    gap: 10px;
+		}
+		
+		.edit-btn, .save-btn {
+		    background: #3498db;
+		    color: white;
+		    border: none;
+		    padding: 8px 15px;
+		    border-radius: 5px;
+		    cursor: pointer;
+		    font-size: 14px;
+		}
+		
+		.delete-btn {
+		    background: #e74c3c;
+		    color: white;
+		    border: none;
+		    padding: 8px 15px;
+		    border-radius: 5px;
+		    cursor: pointer;
+		    font-size: 14px;
+		}
+		
+		.cancel-btn {
+		    background: #7f8c8d;
+		    color: white;
+		    border: none;
+		    padding: 8px 15px;
+		    border-radius: 5px;
+		    cursor: pointer;
+		    font-size: 14px;
+		}
+		
+		.import-export-container {
+		    display: flex;
+		    gap: 15px;
+		    margin-top: 20px;
+		    flex-wrap: wrap;
+		}
+		
+		.import-export-btn {
+		    background: #9b59b6;
+		    color: white;
+		    border: none;
+		    padding: 12px 20px;
+		    border-radius: 6px;
+		    cursor: pointer;
+		    font-size: 15px;
+		}
+		
+		.bulk-actions {
+		    display: flex;
+		    gap: 10px;
+		    margin-bottom: 20px;
+		}
+		
+		.bulk-action-btn {
+		    background: #34495e;
+		    color: white;
+		    border: 2px solid #3498db;
+		    padding: 10px 20px;
+		    border-radius: 6px;
+		    cursor: pointer;
+		    font-size: 14px;
+		}
+		
+		.bulk-action-btn:hover {
+		    background: #3498db;
+		}
+		
+		.player-search {
+		    margin-bottom: 20px;
+		}
+		
+		.search-input {
+		    width: 100%;
+		    padding: 12px;
+		    border-radius: 6px;
+		    border: 2px solid #2ecc71;
+		    background: #2c3e50;
+		    color: white;
+		    font-size: 16px;
+		}
+		
+		.stats-summary {
+		    background: #2c3e50;
+		    border-radius: 8px;
+		    padding: 15px;
+		    margin-bottom: 20px;
+		    display: flex;
+		    justify-content: space-between;
+		    color: #bdc3c7;
+		}
+		
+		.stats-item {
+		    text-align: center;
+		}
+		
+		.stats-value {
+		    font-size: 1.5em;
+		    color: #2ecc71;
+		    font-weight: bold;
+		}
+		
+		.empty-players-message {
+		    text-align: center;
+		    padding: 40px;
+		    color: #7f8c8d;
+		    font-size: 1.1em;
+		}
+		
+		.editable-input {
+		    background: transparent;
+		    border: 2px solid #3498db;
+		    color: white;
+		    padding: 8px;
+		    border-radius: 4px;
+		    width: 100%;
+		}
+		
+		.editable-input:focus {
+		    outline: none;
+		    border-color: #2ecc71;
+		}
+
+
+
+
+
+
+
+
+
+		
     </style>
 </head>
 <body>
@@ -877,40 +1122,7 @@
         </div>
     </div>
     
-    <!-- PAGINA 6: Spelers upload -->
-    <div id="page6" class="page">
-        <div class="header">
-            <div>
-                <button class="home-btn" onclick="showPage(1)">🏠 Hoofdmenu</button>
-                <button class="back-btn" onclick="showPage(7)">← Terug</button>
-            </div>
-            <h1>📋 Spelers Beheer</h1>
-            <div style="display: flex; gap: 10px;">
-                <button class="download-btn" onclick="changeAdminPassword()" style="background: #9b59b6;">🔐 Wachtwoord</button>
-            </div>
-        </div>
-    
-        <div class="file-upload-container">
-            <p><strong>Upload een CSV bestand met spelers</strong></p>
-            <p style="font-size: 0.9em; color: #bdc3c7; margin: 10px 0;">
-                Formaat: Naam;Gemiddelde;Target<br>
-                Scheiding met puntkomma's (CSV) - één regel per speler
-            </p>
-            <input type="file" id="playersFileInput" accept=".csv,.txt" style="display: none;" onchange="handlePlayersFileUpload(event)">
-            <button class="download-btn" onclick="document.getElementById('playersFileInput').click()">📁 Upload Spelers CSV</button>
-            
-            <div class="info-box">
-                💡 <strong>Voorbeeld:</strong><br>
-                <small>BOUDEWEEL Jan;4,864;87<br>
-                DEBEUF Marnik;2,000;28<br>
-                DECANCQ Jorn;2,500;21</small>
-            </div>
-        </div>
-    
-        <div class="matches-list-container" id="playersList">
-            <!-- Hier komen de spelers te staan -->
-        </div>
-    </div>
+
     
     <!-- PAGINA 7: Beheer matchen -->
     <div id="page7" class="page">
@@ -921,7 +1133,7 @@
             </div>
             <h1>📥 Beheer Matchen</h1>
             <div style="display: flex; gap: 10px;">
-                <button class="download-btn" onclick="showPage(6)">👥 Spelers</button>
+               
             </div>
         </div>
         
@@ -969,16 +1181,22 @@
 		</div>
         
         <div id="matchesTabContent">
-            <div class="tab-content active" id="tabContentActive">
-                <!-- Actieve matchen komen hier -->
-            </div>
-            <div class="tab-content" id="tabContentCompleted">
-                <!-- Voltooide matchen komen hier -->
-            </div>
-            <div class="tab-content" id="tabContentDownloaded">
-                <!-- Gedownloade matchen komen hier -->
-            </div>
-        </div>
+    		<div class="tab-content active" id="tabContentActive">
+		        <!-- Actieve matchen komen hier -->
+		    </div>
+		    <div class="tab-content" id="tabContentCompleted">
+		        <!-- Voltooide matchen komen hier -->
+		    </div>
+    		<div class="tab-content" id="tabContentDownloaded">
+		        <!-- Gedownloade matchen komen hier -->
+    		</div>
+		    <!-- NIEUW: Spelers beheer tab -->
+    		<div class="tab-content" id="tabContentPlayers">
+        		<div class="players-management-container">
+		            <!-- Hier komt de volledige spelersbeheer interface -->
+		        </div>
+		    </div>
+		</div>
     </div>
 
     <script>
@@ -2597,6 +2815,516 @@
             }
         }
 
+
+
+		// ==================== SPELERS BEHEER FUNCTIES ====================
+		let editingPlayerIndex = -1;
+		let editingPlayerData = null;
+		
+		function showMatchesTab(tab) {
+		    state.currentMatchesTab = tab;
+		    
+		    document.querySelectorAll('#matchesTabs .tab-btn').forEach(btn => {
+		        btn.classList.remove('active');
+		    });
+		    
+		    document.querySelectorAll('#matchesTabContent .tab-content').forEach(content => {
+		        content.classList.remove('active');
+		    });
+		    
+		    document.getElementById(`tab${tab.charAt(0).toUpperCase() + tab.slice(1)}`).classList.add('active');
+		    document.getElementById(`tabContent${tab.charAt(0).toUpperCase() + tab.slice(1)}`).classList.add('active');
+		    
+		    if (tab === 'players') {
+		        loadPlayersManagementTab();
+		    } else {
+		        loadMatchesTabContent();
+		    }
+		}
+		
+		function loadPlayersManagementTab() {
+		    const container = document.getElementById('tabContentPlayers');
+		    
+		    updatePlayersBadge();
+		    
+		    const totalPlayers = state.players.length;
+		    const avgTsg = totalPlayers > 0 
+		        ? (state.players.reduce((sum, p) => sum + (parseFloat(p.tsg.replace(',', '.')) || 0), 0) / totalPlayers).toFixed(3)
+		        : '0.000';
+		    const avgTarget = totalPlayers > 0 
+		        ? Math.round(state.players.reduce((sum, p) => sum + (p.target || 0), 0) / totalPlayers)
+		        : 0;
+		    
+		    container.innerHTML = `
+		        <div class="players-management-container">
+		            <div class="player-form-container">
+		                <h3>${editingPlayerIndex >= 0 ? '📝 Speler Bewerken' : '➕ Nieuwe Speler Toevoegen'}</h3>
+		                <div class="form-row">
+		                    <div class="form-group">
+		                        <label>Naam *</label>
+		                        <input type="text" id="playerNameInput" class="form-input" 
+		                               placeholder="Voor- en achternaam" 
+		                               value="${editingPlayerData ? editingPlayerData.name : ''}">
+		                    </div>
+		                    <div class="form-group">
+		                        <label>Gemiddelde (TSG)</label>
+		                        <input type="text" id="playerTsgInput" class="form-input" 
+		                               placeholder="bijv. 4,864" 
+		                               value="${editingPlayerData ? editingPlayerData.tsg : ''}">
+		                    </div>
+		                    <div class="form-group">
+		                        <label>Target</label>
+		                        <input type="number" id="playerTargetInput" class="form-input" 
+		                               placeholder="bijv. 87" min="1" max="200"
+		                               value="${editingPlayerData ? editingPlayerData.target : ''}">
+		                    </div>
+		                    <button class="add-player-btn" onclick="${editingPlayerIndex >= 0 ? 'saveEditedPlayer()' : 'addNewPlayer()'}">
+		                        ${editingPlayerIndex >= 0 ? '💾 Opslaan' : '➕ Toevoegen'}
+		                    </button>
+		                </div>
+		                ${editingPlayerIndex >= 0 ? 
+		                    `<button class="cancel-btn" onclick="cancelEditPlayer()" style="margin-top: 10px;">❌ Annuleren</button>` : 
+		                    ''}
+		            </div>
+		            
+		            <div class="stats-summary">
+		                <div class="stats-item">
+		                    <div>Totaal spelers</div>
+		                    <div class="stats-value">${totalPlayers}</div>
+		                </div>
+		                <div class="stats-item">
+		                    <div>Gemiddeld TSG</div>
+		                    <div class="stats-value">${avgTsg.replace('.', ',')}</div>
+		                </div>
+		                <div class="stats-item">
+		                    <div>Gemiddeld target</div>
+		                    <div class="stats-value">${avgTarget}</div>
+		                </div>
+		            </div>
+		            
+		            <div class="players-list-container">
+		                <h3 style="margin-bottom: 20px;">📋 Alle Spelers (${totalPlayers})</h3>
+		                
+		                <div class="bulk-actions">
+		                    <button class="bulk-action-btn" onclick="exportPlayersToCSV()">
+		                        📥 Exporteer naar CSV
+		                    </button>
+		                    <button class="bulk-action-btn" onclick="importPlayersFromCSV()">
+		                        📤 Importeer CSV
+		                    </button>
+		                    <button class="bulk-action-btn" onclick="clearAllPlayers()" style="background: #e74c3c;">
+		                        🗑️ Alle Spelers Verwijderen
+		                    </button>
+		                </div>
+		                
+		                <div class="player-search">
+		                    <input type="text" id="playerSearchInput" class="search-input" 
+		                           placeholder="Zoek speler..." onkeyup="filterPlayersList()">
+		                </div>
+		                
+		                ${totalPlayers === 0 ? `
+		                    <div class="empty-players-message">
+		                        <p>Nog geen spelers toegevoegd</p>
+		                        <p><small>Voeg spelers toe via het formulier hierboven</small></p>
+		                    </div>
+		                ` : `
+		                    <div class="players-list-header">
+		                        <div>Naam</div>
+		                        <div>Gemiddelde</div>
+		                        <div>Target</div>
+		                        <div>Acties</div>
+		                    </div>
+		                    <div id="playersListContent">
+		                        <!-- Spelers worden hier ingeladen -->
+		                    </div>
+		                `}
+		            </div>
+		        </div>
+		    `;
+		    
+		    if (totalPlayers > 0) {
+		        renderPlayersList();
+		    }
+		}
+		
+		function renderPlayersList() {
+		    const container = document.getElementById('playersListContent');
+		    if (!container) return;
+		    
+		    const searchTerm = document.getElementById('playerSearchInput')?.value.toLowerCase() || '';
+		    
+		    const filteredPlayers = state.players.filter(player => 
+		        player.name.toLowerCase().includes(searchTerm) ||
+		        player.tsg.toLowerCase().includes(searchTerm) ||
+		        player.target.toString().includes(searchTerm)
+		    );
+		    
+		    container.innerHTML = filteredPlayers.map((player, index) => `
+		        <div class="player-row ${editingPlayerIndex === index ? 'editing' : ''}" id="playerRow_${index}">
+		            <div>
+		                ${editingPlayerIndex === index ? 
+		                    `<input type="text" class="editable-input" id="editName_${index}" value="${player.name}">` : 
+		                    `<strong>${player.name}</strong>`}
+		            </div>
+		            <div>
+		                ${editingPlayerIndex === index ? 
+		                    `<input type="text" class="editable-input" id="editTsg_${index}" value="${player.tsg}">` : 
+		                    player.tsg}
+		            </div>
+		            <div>
+		                ${editingPlayerIndex === index ? 
+		                    `<input type="number" class="editable-input" id="editTarget_${index}" value="${player.target}" min="1" max="200">` : 
+		                    player.target}
+		            </div>
+		            <div class="player-actions">
+		                ${editingPlayerIndex === index ? `
+		                    <button class="save-btn" onclick="savePlayerEdit(${index})">💾 Opslaan</button>
+		                    <button class="cancel-btn" onclick="cancelEditPlayer()">❌ Annuleren</button>
+		                ` : `
+		                    <button class="edit-btn" onclick="editPlayer(${index})">✏️ Bewerk</button>
+		                    <button class="delete-btn" onclick="deletePlayer(${index})">🗑️ Verwijder</button>
+		                `}
+		            </div>
+		        </div>
+		    `).join('');
+		}
+		
+		function filterPlayersList() {
+		    renderPlayersList();
+		}
+		
+		function addNewPlayer() {
+		    const nameInput = document.getElementById('playerNameInput');
+		    const tsgInput = document.getElementById('playerTsgInput');
+		    const targetInput = document.getElementById('playerTargetInput');
+		    
+		    const name = nameInput.value.trim();
+		    const tsg = tsgInput.value.trim() || '0,000';
+		    const target = parseInt(targetInput.value) || 0;
+		    
+		    if (!name) {
+		        alert('Voer een naam in voor de speler');
+		        nameInput.focus();
+		        return;
+		    }
+		    
+		    // Check voor dubbele naam
+		    const existingPlayer = state.players.find(p => 
+		        p.name.toLowerCase() === name.toLowerCase()
+		    );
+		    
+		    if (existingPlayer) {
+		        if (!confirm(`Speler "${name}" bestaat al. Toch toevoegen?`)) {
+		            return;
+		        }
+		    }
+		    
+		    // Parse TSG correct
+		    const cleanTsg = tsg.replace(',', '.');
+		    const tsgValue = parseFloat(cleanTsg) || 0;
+		    const formattedTsg = tsgValue.toFixed(3).replace('.', ',');
+		    
+		    // Validate target
+		    const validTarget = Math.max(1, Math.min(200, target || 50));
+		    
+		    // Add player
+		    state.players.push({
+		        name: name,
+		        tsg: formattedTsg,
+		        target: validTarget
+		    });
+		    
+		    // Save to storage
+		    savePlayersToStorage();
+		    
+		    // Clear form
+		    nameInput.value = '';
+		    tsgInput.value = '';
+		    targetInput.value = '';
+		    
+		    // Refresh display
+		    renderPlayersList();
+		    updatePlayersBadge();
+		    
+		    // Show success message
+		    alert(`✅ Speler "${name}" toegevoegd!`);
+		    
+		    // Focus on name input for next entry
+		    nameInput.focus();
+		}
+		
+		function editPlayer(index) {
+		    if (index < 0 || index >= state.players.length) return;
+		    
+		    editingPlayerIndex = index;
+		    editingPlayerData = { ...state.players[index] };
+		    
+		    // Reload the players management tab
+		    loadPlayersManagementTab();
+		    
+		    // Scroll to the editing form
+		    document.querySelector('.player-form-container').scrollIntoView({ behavior: 'smooth' });
+		}
+		
+		function saveEditedPlayer() {
+		    if (editingPlayerIndex < 0 || !editingPlayerData) return;
+		    
+		    const nameInput = document.getElementById('playerNameInput');
+		    const tsgInput = document.getElementById('playerTsgInput');
+		    const targetInput = document.getElementById('playerTargetInput');
+		    
+		    const newName = nameInput.value.trim();
+		    const newTsg = tsgInput.value.trim() || '0,000';
+		    const newTarget = parseInt(targetInput.value) || 0;
+		    
+		    if (!newName) {
+		        alert('Voer een naam in voor de speler');
+		        nameInput.focus();
+		        return;
+		    }
+		    
+		    // Check for duplicate name (excluding current player)
+		    const existingPlayer = state.players.find((p, idx) => 
+		        idx !== editingPlayerIndex && 
+		        p.name.toLowerCase() === newName.toLowerCase()
+		    );
+		    
+		    if (existingPlayer) {
+		        alert(`Speler "${newName}" bestaat al. Kies een andere naam.`);
+		        return;
+		    }
+		    
+		    // Parse TSG
+		    const cleanTsg = newTsg.replace(',', '.');
+		    const tsgValue = parseFloat(cleanTsg) || 0;
+		    const formattedTsg = tsgValue.toFixed(3).replace('.', ',');
+		    
+		    // Validate target
+		    const validTarget = Math.max(1, Math.min(200, newTarget || 50));
+		    
+		    // Update player
+		    state.players[editingPlayerIndex] = {
+		        name: newName,
+		        tsg: formattedTsg,
+		        target: validTarget
+		    };
+		    
+		    // Save to storage
+		    savePlayersToStorage();
+		    
+		    // Reset editing state
+		    editingPlayerIndex = -1;
+		    editingPlayerData = null;
+		    
+		    // Refresh display
+		    loadPlayersManagementTab();
+		    
+		    alert(`✅ Speler "${newName}" bijgewerkt!`);
+		}
+		
+		function savePlayerEdit(index) {
+		    if (index < 0 || index >= state.players.length) return;
+		    
+		    const nameInput = document.getElementById(`editName_${index}`);
+		    const tsgInput = document.getElementById(`editTsg_${index}`);
+		    const targetInput = document.getElementById(`editTarget_${index}`);
+		    
+		    const newName = nameInput.value.trim();
+		    const newTsg = tsgInput.value.trim() || '0,000';
+		    const newTarget = parseInt(targetInput.value) || 0;
+		    
+		    if (!newName) {
+		        alert('Voer een naam in voor de speler');
+		        nameInput.focus();
+		        return;
+		    }
+		    
+		    // Check for duplicate name
+		    const existingPlayer = state.players.find((p, idx) => 
+		        idx !== index && 
+		        p.name.toLowerCase() === newName.toLowerCase()
+		    );
+		    
+		    if (existingPlayer) {
+		        alert(`Speler "${newName}" bestaat al. Kies een andere naam.`);
+		        return;
+		    }
+		    
+		    // Parse TSG
+		    const cleanTsg = newTsg.replace(',', '.');
+		    const tsgValue = parseFloat(cleanTsg) || 0;
+		    const formattedTsg = tsgValue.toFixed(3).replace('.', ',');
+		    
+		    // Validate target
+		    const validTarget = Math.max(1, Math.min(200, newTarget || 50));
+		    
+		    // Update player
+		    state.players[index] = {
+		        name: newName,
+		        tsg: formattedTsg,
+		        target: validTarget
+		    };
+		    
+		    // Save to storage
+		    savePlayersToStorage();
+		    
+		    // Reset editing state
+		    editingPlayerIndex = -1;
+		    editingPlayerData = null;
+		    
+		    // Refresh display
+		    renderPlayersList();
+		    
+		    alert(`✅ Speler "${newName}" bijgewerkt!`);
+		}
+		
+		function cancelEditPlayer() {
+		    editingPlayerIndex = -1;
+		    editingPlayerData = null;
+		    loadPlayersManagementTab();
+		}
+		
+		function deletePlayer(index) {
+		    if (index < 0 || index >= state.players.length) return;
+		    
+		    const player = state.players[index];
+		    
+		    if (!confirm(`Weet je zeker dat je "${player.name}" wilt verwijderen?\n\nDit kan niet ongedaan gemaakt worden.`)) {
+		        return;
+		    }
+		    
+		    // Check if player is in any active matches
+		    const activeMatches = state.matches.filter(m => !m.completed);
+		    const playerInMatch = activeMatches.find(m => 
+		        m.p1 === player.name || m.p2 === player.name
+		    );
+		    
+		    if (playerInMatch) {
+		        alert(`⚠️ Waarschuwing: "${player.name}" speelt in een actieve match.\nVerwijder eerst de match of wijzig de spelers.`);
+		        return;
+		    }
+		    
+		    // Remove player
+		    state.players.splice(index, 1);
+		    
+		    // Save to storage
+		    savePlayersToStorage();
+		    
+		    // Refresh display
+		    if (state.currentMatchesTab === 'players') {
+		        renderPlayersList();
+		        updatePlayersBadge();
+		    }
+		    
+		    alert(`✅ Speler "${player.name}" verwijderd!`);
+		}
+		
+		function updatePlayersBadge() {
+		    const badge = document.getElementById('badgePlayers');
+		    if (badge) {
+		        badge.textContent = state.players.length;
+		    }
+		}
+		
+		function exportPlayersToCSV() {
+		    if (state.players.length === 0) {
+		        alert('Geen spelers om te exporteren.');
+		        return;
+		    }
+		    
+		    let csvContent = "Naam;Gemiddelde;Target\n";
+		    
+		    state.players.forEach(player => {
+		        csvContent += `${player.name};${player.tsg};${player.target}\n`;
+		    });
+		    
+		    const blob = new Blob(["\uFEFF" + csvContent], { type: 'text/csv;charset=utf-8;' });
+		    const link = document.createElement("a");
+		    const url = URL.createObjectURL(blob);
+		    link.setAttribute("href", url);
+		    link.setAttribute("download", `biljart_spelers_${new Date().toISOString().split('T')[0]}.csv`);
+		    document.body.appendChild(link);
+		    link.click();
+		    document.body.removeChild(link);
+		    
+		    alert(`✅ ${state.players.length} spelers geëxporteerd naar CSV!`);
+		}
+		
+		function importPlayersFromCSV() {
+		    const fileInput = document.createElement('input');
+		    fileInput.type = 'file';
+		    fileInput.accept = '.csv,.txt';
+		    
+		    fileInput.onchange = function(event) {
+		        const file = event.target.files[0];
+		        if (!file) return;
+		        
+		        const reader = new FileReader();
+		        
+		        reader.onload = function(e) {
+		            try {
+		                let content = e.target.result;
+		                const newPlayersCount = parsePlayersCSV(content);
+		                savePlayersToStorage();
+		                
+		                // Refresh if on players tab
+		                if (state.currentMatchesTab === 'players') {
+		                    loadPlayersManagementTab();
+		                }
+		                
+		                alert(`✅ Succes! ${newPlayersCount} spelers geïmporteerd.`);
+		            } catch (error) {
+		                alert(`❌ Fout bij importeren: ${error.message}`);
+		            }
+		        };
+		        
+		        reader.readAsText(file, 'UTF-8');
+		    };
+		    
+		    fileInput.click();
+		}
+		
+		// Update de loadMatchesTabContent functie:
+		function loadMatchesTabContent() {
+		    updateTabBadges();
+		    
+		    if (state.currentMatchesTab === 'active') {
+		        loadActiveMatches();
+		    } else if (state.currentMatchesTab === 'completed') {
+		        loadCompletedMatches();
+		    } else if (state.currentMatchesTab === 'downloaded') {
+		        loadDownloadedMatches();
+		    } else if (state.currentMatchesTab === 'players') {
+		        loadPlayersManagementTab();
+		    }
+		}
+		
+		// Update de updateTabBadges functie:
+		function updateTabBadges() {
+		    const activeCount = state.matches.filter(m => !m.completed).length;
+		    const completedCount = state.matches.filter(m => m.completed).length;
+		    const downloadedCount = state.downloadedMatches.length;
+		    const playersCount = state.players.length;
+		    
+		    document.getElementById('badgeActive').textContent = activeCount;
+		    document.getElementById('badgeCompleted').textContent = completedCount;
+		    document.getElementById('badgeDownloaded').textContent = downloadedCount;
+		    document.getElementById('badgePlayers').textContent = playersCount;
+		}
+		
+		// Update de window.onload functie om players badge te initialiseren:
+		window.onload = function() {
+		    loadStateFromStorage();
+		    updateTabBadges(); // NIEUW: update badges bij opstarten
+		    // ... rest van de code blijft hetzelfde
+		};
+
+
+
+
+
+
+		
         // ==================== INITIALISATIE ====================
         window.onload = function() {
             loadStateFromStorage();
@@ -2620,4 +3348,5 @@
     </script>
 </body>
 </html>
+
 
