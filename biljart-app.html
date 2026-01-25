@@ -3320,7 +3320,46 @@
 		};
 
 
-
+		// ==================== LAAD SPELERS VAN GITHUB ====================
+		async function loadPlayersFromGitHub() {
+		    try {
+		        console.log('🔁 Laad spelers van GitHub...');
+		        
+		        // URL naar je spelers.json op GitHub
+		        const url = 'https://raw.githubusercontent.com/Angello8647/biljart-app/main/spelers.json';
+		        
+		        const response = await fetch(url);
+		        
+		        if (!response.ok) {
+		            console.log('❌ GitHub spelers niet gevonden, gebruik lokale spelers');
+		            return false;
+		        }
+		        
+		        const playersFromGitHub = await response.json();
+		        
+		        if (!Array.isArray(playersFromGitHub)) {
+		            console.log('❌ Ongeldig formaat in spelers.json');
+		            return false;
+		        }
+		        
+		        console.log(`✅ ${playersFromGitHub.length} spelers geladen van GitHub`);
+		        
+		        // VERVANG lokale spelers met GitHub spelers
+		        state.players = playersFromGitHub;
+		        
+		        // Sorteer op naam
+		        state.players.sort((a, b) => a.name.localeCompare(b.name));
+		        
+		        // Sla op in localStorage voor offline gebruik
+		        savePlayersToStorage();
+		        
+		        return true;
+		        
+		    } catch (error) {
+		        console.log('⚠️ Fout bij laden van GitHub:', error.message);
+		        return false;
+		    }
+		}
 
 
 
@@ -3348,5 +3387,6 @@
     </script>
 </body>
 </html>
+
 
 
