@@ -1,55 +1,49 @@
-[
+[[
   {
     "name": "Arnaert Robrecht",
-    "tsg": ",.85",
+    "tsg": "0.85",
     "target": 37
   },
   {
     "name": "Arnaert Thomas",
-    "tsg": "1,000",
+    "tsg": "1.000",
     "target": 20
   },
   {
     "name": "Decroos Nicolas",
-    "tsg": "1,000",
+    "tsg": "1.000",
     "target": 20
-  }
-
-    {
+  },
+  {
     "name": "Gheldof Luc",
-    "tsg": "4,080",
+    "tsg": "4.080",
     "target": 82
-  }
-
-    {
+  },
+  {
     "name": "Gysel Lucien",
-    "tsg": "2,590",
+    "tsg": "2.590",
     "target": 52
-  }
-
-
-    {
+  },
+  {
     "name": "Osaer Dominiek",
-    "tsg": "1,300",
+    "tsg": "1.300",
     "target": 26
-  }
-
-    {
+  },
+  {
     "name": "Theuninck Willy",
-    "tsg": "2,440",
+    "tsg": "2.440",
     "target": 49
-  }
-    {
+  },
+  {
     "name": "Titeca Etienne",
-    "tsg": "1,340",
+    "tsg": "1.340",
     "target": 27
-  }
-    {
+  },
+  {
     "name": "Vercouter André",
-    "tsg": "1,850",
+    "tsg": "1.850",
     "target": 37
   }
 ]
-
 
 
