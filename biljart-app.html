@@ -2330,6 +2330,23 @@
             }
         }
 
+
+		async function refreshPlayersFromGitHub() {
+		    if (confirm('Spelers herladen van GitHub?\n\nLokale wijzigingen gaan verloren.')) {
+		        const success = await loadPlayersFromGitHub();
+		        
+		        if (success) {
+		            alert(`✅ ${state.players.length} spelers geladen van GitHub!`);
+		            // Herlaad de spelers tab
+		            if (state.currentMatchesTab === 'players') {
+		                loadPlayersManagementTab();
+		            }
+		        } else {
+		            alert('❌ Kon spelers niet laden van GitHub. Controleer internet of het bestand.');
+		        }
+		    }
+		}
+
         // ==================== MATCHES TAB FUNCTIES ====================
         function showMatchesTab(tab) {
             state.currentMatchesTab = tab;
@@ -3334,11 +3351,20 @@
 		}
 		
 		// Update de window.onload functie om players badge te initialiseren:
-		window.onload = function() {
+		window.onload = async function() {
 		    loadStateFromStorage();
-		    updateTabBadges(); // NIEUW: update badges bij opstarten
-		    // ... rest van de code blijft hetzelfde
-		};
+		    
+		    // Probeer eerst spelers van GitHub te laden
+		    await loadPlayersFromGitHub();
+		    
+		    // Als GitHub leeg is, gebruik dan lokale als backup
+		    if (state.players.length === 0) {
+		        console.log('Geen spelers van GitHub, gebruik lokale backup');
+		        // Eventueel standaard spelers hier toevoegen
+		    }
+				    updateTabBadges(); // NIEUW: update badges bij opstarten
+				    // ... rest van de code blijft hetzelfde
+				};
 
 
 		// ==================== LAAD SPELERS VAN GITHUB ====================
@@ -3408,6 +3434,7 @@
     </script>
 </body>
 </html>
+
 
 
 
