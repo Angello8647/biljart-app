@@ -6,6 +6,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="mobile-web-app-capable" content="yes">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Biljart Score</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
@@ -722,253 +725,263 @@
             100% { transform: scale(1); }
         }
 
-		/* ========== SPELERS BEHEER STIJLEN ========== */
-		.players-management-container {
-		    padding: 20px;
-		}
-		
-		.player-form-container {
-		    background: #34495e;
-		    border-radius: 10px;
-		    padding: 20px;
-		    margin-bottom: 30px;
-		    border-left: 4px solid #3498db;
-		}
-		
-		.player-form-container h3 {
-		    color: #3498db;
-		    margin-bottom: 20px;
-		}
-		
-		.form-row {
-		    display: grid;
-		    grid-template-columns: 1fr 1fr 1fr auto;
-		    gap: 15px;
-		    margin-bottom: 15px;
-		    align-items: end;
-		}
-		
-		.form-group {
-		    display: flex;
-		    flex-direction: column;
-		}
-		
-		.form-group label {
-		    margin-bottom: 8px;
-		    color: #bdc3c7;
-		    font-size: 0.9em;
-		}
-		
-		.form-input {
-		    padding: 12px;
-		    border-radius: 6px;
-		    border: 2px solid #3498db;
-		    background: #2c3e50;
-		    color: white;
-		    font-size: 16px;
-		}
-		
-		.form-input:focus {
-		    outline: none;
-		    border-color: #2ecc71;
-		}
-		
-		.add-player-btn {
-		    background: #2ecc71;
-		    color: white;
-		    border: none;
-		    padding: 12px 25px;
-		    border-radius: 6px;
-		    cursor: pointer;
-		    font-size: 16px;
-		    font-weight: bold;
-		    height: 44px;
-		    transition: all 0.3s;
-		}
-		
-		.add-player-btn:hover {
-		    background: #27ae60;
-		    transform: translateY(-2px);
-		}
-		
-		.players-list-container {
-		    background: #34495e;
-		    border-radius: 10px;
-		    padding: 20px;
-		}
-		
-		.players-list-header {
-		    display: grid;
-		    grid-template-columns: 2fr 1fr 1fr auto;
-		    gap: 15px;
-		    padding: 15px;
-		    background: #2c3e50;
-		    border-radius: 8px;
-		    margin-bottom: 10px;
-		    font-weight: bold;
-		    color: #3498db;
-		}
-		
-		.player-row {
-		    display: grid;
-		    grid-template-columns: 2fr 1fr 1fr auto;
-		    gap: 15px;
-		    padding: 15px;
-		    background: rgba(255,255,255,0.05);
-		    border-radius: 8px;
-		    margin-bottom: 10px;
-		    align-items: center;
-		    transition: all 0.3s;
-		}
-		
-		.player-row:hover {
-		    background: rgba(255,255,255,0.1);
-		}
-		
-		.player-row.editing {
-		    background: rgba(52, 152, 219, 0.1);
-		    border: 2px solid #3498db;
-		}
-		
-		.player-actions {
-		    display: flex;
-		    gap: 10px;
-		}
-		
-		.edit-btn, .save-btn {
-		    background: #3498db;
-		    color: white;
-		    border: none;
-		    padding: 8px 15px;
-		    border-radius: 5px;
-		    cursor: pointer;
-		    font-size: 14px;
-		}
-		
-		.delete-btn {
-		    background: #e74c3c;
-		    color: white;
-		    border: none;
-		    padding: 8px 15px;
-		    border-radius: 5px;
-		    cursor: pointer;
-		    font-size: 14px;
-		}
-		
-		.cancel-btn {
-		    background: #7f8c8d;
-		    color: white;
-		    border: none;
-		    padding: 8px 15px;
-		    border-radius: 5px;
-		    cursor: pointer;
-		    font-size: 14px;
-		}
-		
-		.import-export-container {
-		    display: flex;
-		    gap: 15px;
-		    margin-top: 20px;
-		    flex-wrap: wrap;
-		}
-		
-		.import-export-btn {
-		    background: #9b59b6;
-		    color: white;
-		    border: none;
-		    padding: 12px 20px;
-		    border-radius: 6px;
-		    cursor: pointer;
-		    font-size: 15px;
-		}
-		
-		.bulk-actions {
-		    display: flex;
-		    gap: 10px;
-		    margin-bottom: 20px;
-		}
-		
-		.bulk-action-btn {
-		    background: #34495e;
-		    color: white;
-		    border: 2px solid #3498db;
-		    padding: 10px 20px;
-		    border-radius: 6px;
-		    cursor: pointer;
-		    font-size: 14px;
-		}
-		
-		.bulk-action-btn:hover {
-		    background: #3498db;
-		}
-		
-		.player-search {
-		    margin-bottom: 20px;
-		}
-		
-		.search-input {
-		    width: 100%;
-		    padding: 12px;
-		    border-radius: 6px;
-		    border: 2px solid #2ecc71;
-		    background: #2c3e50;
-		    color: white;
-		    font-size: 16px;
-		}
-		
-		.stats-summary {
-		    background: #2c3e50;
-		    border-radius: 8px;
-		    padding: 15px;
-		    margin-bottom: 20px;
-		    display: flex;
-		    justify-content: space-between;
-		    color: #bdc3c7;
-		}
-		
-		.stats-item {
-		    text-align: center;
-		}
-		
-		.stats-value {
-		    font-size: 1.5em;
-		    color: #2ecc71;
-		    font-weight: bold;
-		}
-		
-		.empty-players-message {
-		    text-align: center;
-		    padding: 40px;
-		    color: #7f8c8d;
-		    font-size: 1.1em;
-		}
-		
-		.editable-input {
-		    background: transparent;
-		    border: 2px solid #3498db;
-		    color: white;
-		    padding: 8px;
-		    border-radius: 4px;
-		    width: 100%;
-		}
-		
-		.editable-input:focus {
-		    outline: none;
-		    border-color: #2ecc71;
-		}
-
-
-
-
-
-
-
-
-
-		
+        /* ========== SPELERS BEHEER STIJLEN ========== */
+        .players-management-container {
+            padding: 20px;
+        }
+        
+        .player-form-container {
+            background: #34495e;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .player-form-container h3 {
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: end;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            margin-bottom: 8px;
+            color: #bdc3c7;
+            font-size: 0.9em;
+        }
+        
+        .form-input {
+            padding: 12px;
+            border-radius: 6px;
+            border: 2px solid #3498db;
+            background: #2c3e50;
+            color: white;
+            font-size: 16px;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #2ecc71;
+        }
+        
+        .add-player-btn {
+            background: #2ecc71;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            height: 44px;
+            transition: all 0.3s;
+        }
+        
+        .add-player-btn:hover {
+            background: #27ae60;
+            transform: translateY(-2px);
+        }
+        
+        .players-list-container {
+            background: #34495e;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        
+        .players-list-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr auto;
+            gap: 15px;
+            padding: 15px;
+            background: #2c3e50;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #3498db;
+        }
+        
+        .player-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr auto;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .player-row:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .player-row.editing {
+            background: rgba(52, 152, 219, 0.1);
+            border: 2px solid #3498db;
+        }
+        
+        .player-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .edit-btn, .save-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .delete-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .cancel-btn {
+            background: #7f8c8d;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .import-export-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .import-export-btn {
+            background: #9b59b6;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        
+        .bulk-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .bulk-action-btn {
+            background: #34495e;
+            color: white;
+            border: 2px solid #3498db;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .bulk-action-btn:hover {
+            background: #3498db;
+        }
+        
+        .player-search {
+            margin-bottom: 20px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: 2px solid #2ecc71;
+            background: #2c3e50;
+            color: white;
+            font-size: 16px;
+        }
+        
+        .stats-summary {
+            background: #2c3e50;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            color: #bdc3c7;
+        }
+        
+        .stats-item {
+            text-align: center;
+        }
+        
+        .stats-value {
+            font-size: 1.5em;
+            color: #2ecc71;
+            font-weight: bold;
+        }
+        
+        .empty-players-message {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+        
+        .editable-input {
+            background: transparent;
+            border: 2px solid #3498db;
+            color: white;
+            padding: 8px;
+            border-radius: 4px;
+            width: 100%;
+        }
+        
+        .editable-input:focus {
+            outline: none;
+            border-color: #2ecc71;
+        }
     </style>
 </head>
 <body>
+    <!-- AUTH CHECK - DIT MOET HELEMAAL BOVENAAN STAAN -->
+    <script>
+    (function() {
+        // Controleer of gebruiker ingelogd is via login pagina
+        if (!sessionStorage.getItem('biljart_authenticated') && 
+            !window.location.search.includes('bypass')) {
+            // Niet ingelogd, terug naar login
+            window.location.href = "index.html";
+            return;
+        }
+        
+        // Optioneel: Auto-logout na 8 uur
+        setTimeout(() => {
+            sessionStorage.removeItem('biljart_authenticated');
+            alert('Sessie verlopen. Log opnieuw in.');
+            window.location.href = "index.html";
+        }, 8 * 60 * 60 * 1000);
+    })();
+    </script>
+
     <!-- PAGINA 1: Start (Datum selectie) -->
     <div id="page1" class="page active">
         <div class="header">
@@ -1122,8 +1135,6 @@
         </div>
     </div>
     
-
-    
     <!-- PAGINA 7: Beheer matchen -->
     <div id="page7" class="page">
         <div class="header">
@@ -1133,7 +1144,7 @@
             </div>
             <h1>📥 Beheer Matchen</h1>
             <div style="display: flex; gap: 10px;">
-               
+                <button class="download-btn" onclick="changeAdminPassword()" style="background: #9b59b6;">🔐 Wachtwoord</button>
             </div>
         </div>
         
@@ -1161,84 +1172,54 @@
         </div>
         
         <div class="matches-tabs" id="matchesTabs">
-		    <button class="tab-btn active" onclick="showMatchesTab('active')" id="tabActive">
-	        	Actieve Matchen
-        		<span class="badge" id="badgeActive">0</span>
-    		</button>
-	    	<button class="tab-btn" onclick="showMatchesTab('completed')" id="tabCompleted">
-		        Voltooide Matchen
-	        	<span class="badge" id="badgeCompleted">0</span>
-	    	</button>
-	    	<button class="tab-btn" onclick="showMatchesTab('downloaded')" id="tabDownloaded">
-		        Gedownloade Matchen
-        		<span class="badge" id="badgeDownloaded">0</span>
-    		</button>
-	    	<!-- NIEUW: Spelers tabblad -->
-	    	<button class="tab-btn" onclick="showMatchesTab('players')" id="tabPlayers">
-		        👥 Spelers Beheer
-	        	<span class="badge" id="badgePlayers">0</span>
-	    	</button>
-		</div>
+            <button class="tab-btn active" onclick="showMatchesTab('active')" id="tabActive">
+                Actieve Matchen
+                <span class="badge" id="badgeActive">0</span>
+            </button>
+            <button class="tab-btn" onclick="showMatchesTab('completed')" id="tabCompleted">
+                Voltooide Matchen
+                <span class="badge" id="badgeCompleted">0</span>
+            </button>
+            <button class="tab-btn" onclick="showMatchesTab('downloaded')" id="tabDownloaded">
+                Gedownloade Matchen
+                <span class="badge" id="badgeDownloaded">0</span>
+            </button>
+            <!-- NIEUW: Spelers tabblad -->
+            <button class="tab-btn" onclick="showMatchesTab('players')" id="tabPlayers">
+                👥 Spelers Beheer
+                <span class="badge" id="badgePlayers">0</span>
+            </button>
+        </div>
         
         <div id="matchesTabContent">
-    		<div class="tab-content active" id="tabContentActive">
-		        <!-- Actieve matchen komen hier -->
-		    </div>
-		    <div class="tab-content" id="tabContentCompleted">
-		        <!-- Voltooide matchen komen hier -->
-		    </div>
-    		<div class="tab-content" id="tabContentDownloaded">
-		        <!-- Gedownloade matchen komen hier -->
-    		</div>
-		    <!-- NIEUW: Spelers beheer tab -->
-    		<div class="tab-content" id="tabContentPlayers">
-        		<div class="players-management-container">
-		            <!-- Hier komt de volledige spelersbeheer interface -->
-		        </div>
-		    </div>
-		</div>
+            <div class="tab-content active" id="tabContentActive">
+                <!-- Actieve matchen komen hier -->
+            </div>
+            <div class="tab-content" id="tabContentCompleted">
+                <!-- Voltooide matchen komen hier -->
+            </div>
+            <div class="tab-content" id="tabContentDownloaded">
+                <!-- Gedownloade matchen komen hier -->
+            </div>
+            <!-- NIEUW: Spelers beheer tab -->
+            <div class="tab-content" id="tabContentPlayers">
+                <div class="players-management-container">
+                    <!-- Hier komt de volledige spelersbeheer interface -->
+                </div>
+            </div>
+        </div>
     </div>
 
-
-
-
-
-
-
-
-	
-
-	<!-- AUTH CHECK - VOEG DIT TOE HELEMAAL BOVENAAN JE SCRIPT -->
-	<script>
-	(function() {
-	    // Controleer of gebruiker ingelogd is via login pagina
-	    if (!sessionStorage.getItem('biljart_authenticated') && 
-	        !window.location.search.includes('bypass')) { // bypass voor testen
-	        // Niet ingelogd, terug naar login
-	        window.location.href = "index.html";
-	        return;
-	    }
-	    
-	    // Optioneel: Auto-logout na 8 uur
-	    setTimeout(() => {
-	        sessionStorage.removeItem('biljart_authenticated');
-	        alert('Sessie verlopen. Log opnieuw in.');
-	        window.location.href = "index.html";
-	    }, 8 * 60 * 60 * 1000);
-	})();
-	</script>
-
-
-
-
-	
     <script>
-        // ==================== STATE ====================
+        // ==================== GLOBALE VARIABELEN ====================
+        const APP_VERSION = "1.0.4";
+        const DEFAULT_PASSWORD = "admin123";
+        
         let state = {
             currentPage: 1,
             selectedDate: '',
             matches: [],
-            downloadedMatches: [], // NIEUW: voor gedownloade matchen
+            downloadedMatches: [],
             players: [],
             currentMatch: null,
             player1: { score: 0, turns: [], target: 0, beurtNummer: 1, highestSeries: 0, isWhite: false },
@@ -1259,9 +1240,19 @@
             currentMatchesTab: 'active'
         };
 
-        // ==================== ADMIN PASSWORD FUNCTIES ====================
-        const DEFAULT_PASSWORD = "admin123";
+        let editingPlayerIndex = -1;
+        let editingPlayerData = null;
 
+        // ==================== CACHE MANAGEMENT ====================
+        function clearOldCache() {
+            if (localStorage.getItem('app_version') !== APP_VERSION) {
+                console.log('Nieuwe versie - clearing oude cache...');
+                localStorage.clear();
+                localStorage.setItem('app_version', APP_VERSION);
+            }
+        }
+
+        // ==================== ADMIN PASSWORD FUNCTIES ====================
         function getAdminPassword() {
             const savedPassword = localStorage.getItem('biljartAdminPassword');
             return savedPassword || DEFAULT_PASSWORD;
@@ -1279,9 +1270,7 @@
             const currentPassword = getAdminPassword();
             const enteredPassword = prompt("Voer beheerderswachtwoord in:");
             
-            if (enteredPassword === null) {
-                return; // Gebruiker heeft geannuleerd
-            }
+            if (enteredPassword === null) return;
             
             if (enteredPassword === currentPassword) {
                 showPage(7);
@@ -1364,10 +1353,7 @@
             } else if (pageNum === 4) {
                 updateBallSelectionPage();
             } else if (pageNum === 5) {
-                // Reset dynamische displays
                 document.querySelectorAll('.dynamic-needed').forEach(el => el.remove());
-            } else if (pageNum === 6) {
-                loadPlayersList();
             } else if (pageNum === 7) {
                 loadMatchesTabContent();
                 document.getElementById('filterDate').value = formatDateForInput(new Date());
@@ -1473,15 +1459,13 @@
                 container.innerHTML = `
                     <div style="text-align: center; padding: 20px; color: #95a5a6;">
                         <p>Geen spelers gevonden</p>
-                        <p><small>Upload eerst spelers via het beheer menu</small></p>
+                        <p><small>Spelers worden geladen van GitHub</small></p>
                     </div>
                 `;
                 return;
             }
             
             state.players.sort((a, b) => a.name.localeCompare(b.name));
-            
-            window.tempAvailablePlayers = state.players;
             
             let html = '<h3 style="margin-bottom: 15px; color: #ecf0f1;">Beschikbare spelers:</h3>';
             html += '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px;">';
@@ -1492,7 +1476,7 @@
                 
                 html += `
                     <div class="player-select-box ${isSelected ? 'selected' : ''}" 
-                         onclick="selectAvailablePlayerByIndex(${index})"
+                         onclick="selectAvailablePlayer(${index})"
                          style="${isSelected ? 'opacity: 0.6; cursor: not-allowed;' : ''}">
                         <h3>${player.name}</h3>
                         <p>Gemiddelde: ${player.tsg || 'N/A'}</p>
@@ -1506,12 +1490,10 @@
             container.innerHTML = html;
         }
 
-        function selectAvailablePlayerByIndex(playerIndex) {
-            const availablePlayers = window.tempAvailablePlayers || state.players;
+        function selectAvailablePlayer(playerIndex) {
+            if (playerIndex < 0 || playerIndex >= state.players.length) return;
             
-            if (playerIndex < 0 || playerIndex >= availablePlayers.length) return;
-            
-            const player = availablePlayers[playerIndex];
+            const player = state.players[playerIndex];
             
             let selectedPlayerNum = null;
             if (!state.newMatch.player1) {
@@ -1739,10 +1721,8 @@
         }
 
         function updateDynamicNeededDisplay() {
-            // Verwijder bestaande dynamische displays
             document.querySelectorAll('.dynamic-needed').forEach(el => el.remove());
             
-            // Bereken nog nodig voor huidige speler
             const player = state.currentPlayer === 1 ? state.player1 : state.player2;
             const target = state.currentPlayer === 1 ? state.player1.target : state.player2.target;
             const dynamicNeeded = Math.max(0, target - player.score - state.currentInput);
@@ -1764,12 +1744,10 @@
                 playerCard.appendChild(dynamicDisplay);
             }
             
-            // Update ook de statische "nog nodig" waarden
             updateStaticNeededValues();
         }
 
         function updateStaticNeededValues() {
-            // Voor speler 1
             const needed1 = Math.max(0, state.player1.target - state.player1.score - 
                 (state.currentPlayer === 1 ? state.currentInput : 0));
             const statValue1 = document.querySelector('#player1Card .stat-item:nth-child(5) .stat-value');
@@ -1784,7 +1762,6 @@
                 }
             }
             
-            // Voor speler 2
             const needed2 = Math.max(0, state.player2.target - state.player2.score - 
                 (state.currentPlayer === 2 ? state.currentInput : 0));
             const statValue2 = document.querySelector('#player2Card .stat-item:nth-child(5) .stat-value');
@@ -1817,8 +1794,6 @@
             }
             
             player.beurtNummer++;
-            
-            const totalTurns = state.player1.turns.length + state.player2.turns.length;
             
             const targetReached = player.score >= (state.currentPlayer === 1 ? state.player1.target : state.player2.target);
             
@@ -1871,8 +1846,6 @@
                 finalScore1 = state.player2.score;
                 finalScore2 = state.player1.score;
             }
-            
-            const winnerName = finalScore1 >= state.currentMatch.target1 ? originalP1 : originalP2;
             
             state.currentMatch.p1Score = finalScore1;
             state.currentMatch.p2Score = finalScore2;
@@ -2066,321 +2039,65 @@
             updateDynamicNeededDisplay();
         }
 
-        // ==================== SPELERS FUNCTIES ====================
-        function handlePlayersFileUpload(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            
-            const reader = new FileReader();
-        
-            reader.onload = function(e) {
-                try {
-                    let content = e.target.result;
-                    const newPlayersCount = parsePlayersCSV(content);
-                    savePlayersToStorage();
-                    alert(`✅ Succes! ${newPlayersCount} spelers toegevoegd.`);
-                    loadPlayersList();
-                } catch (error) {
-                    alert(`❌ Fout bij lezen van bestand: ${error.message}\n\nUpload wordt afgebroken.`);
-                    console.error(error);
+        // ==================== LAAD SPELERS VAN GITHUB ====================
+        async function loadPlayersFromGitHub() {
+            try {
+                console.log('🔁 Laad spelers van GitHub...');
+                
+                // Cache-busting URL
+                const cacheBuster = new Date().getTime();
+                const url = `https://raw.githubusercontent.com/Angello8647/biljart-app/main/spelers.json?v=${cacheBuster}`;
+                
+                const response = await fetch(url);
+                
+                if (!response.ok) {
+                    console.log('❌ GitHub spelers niet gevonden, gebruik lokale spelers');
+                    return false;
                 }
-            };
-            
-            if (file.name.endsWith('.csv') || file.name.endsWith('.txt')) {
-                reader.readAsText(file, 'UTF-8');
-            } else {
-                alert("Alleen CSV of TXT bestanden worden ondersteund.");
-            }
-        
-            event.target.value = '';
-        }
-
-        function parsePlayersCSV(csvText) {
-	    console.log("=== START PARSE PLAYERS CSV ===");
-	    
-	    // Fix encoding
-	    csvText = fixCSVEncoding(csvText);
-	    
-	    console.log("CSV lengte:", csvText.length);
-	    
-	    // Split in regels
-	    const lines = csvText.split(/\r\n|\n/);
-	    console.log("Aantal regels:", lines.length);
-	    
-	    state.players = [];
-	    let addedCount = 0;
-	    
-	    for (let i = 0; i < lines.length; i++) {
-	        let line = lines[i].trim();
-	        
-	        // Skip lege regels
-	        if (!line || line === '') {
-	            continue;
-	        }
-	        
-	        // Complexere CSV parsing die met aanhalingstekens om kan gaan
-	        let parts = [];
-	        let currentPart = '';
-	        let inQuotes = false;
-	        let quoteChar = '';
-	        
-	        for (let j = 0; j < line.length; j++) {
-	            const char = line[j];
-	            
-	            if ((char === '"' || char === "'") && !inQuotes) {
-	                inQuotes = true;
-	                quoteChar = char;
-	            } else if (char === quoteChar && inQuotes) {
-	                inQuotes = false;
-	            } else if (char === ';' && !inQuotes) {
-	                parts.push(currentPart.trim());
-	                currentPart = '';
-	            } else {
-	                currentPart += char;
-	            }
-	        }
-	        
-	        // Voeg het laatste deel toe
-	        if (currentPart !== '') {
-	            parts.push(currentPart.trim());
-	        }
-	        
-	        // Als we geen puntenkomma's vinden, probeer dan standaard split
-	        if (parts.length < 3) {
-	            parts = line.split(';').map(p => p.trim());
-	        }
-	        
-	        // Minimaal 3 velden nodig: Naam;Gemiddelde;Target
-	        if (parts.length < 3) {
-	            console.log(`❌ Regel ${i + 1} heeft te weinig velden:`, line);
-	            continue;
-	        }
-	        
-	        try {
-	            // Verwijder aanhalingstekens van alle velden
-	            const playerName = normalizeText(parts[0])
-	                .replace(/^["']+|["']+$/g, '')  // Verwijder alle aanhalingstekens aan begin/einde
-	                .trim();
-	            
-	            const tsg = parts[1]
-	                .replace(/^["']+|["']+$/g, '')  // Verwijder alle aanhalingstekens aan begin/einde
-	                .trim();
-	            
-	            const target = parts[2]
-	                .replace(/^["']+|["']+$/g, '')  // Verwijder alle aanhalingstekens aan begin/einde
-	                .trim();
-	            
-	            // Parse getallen
-	            const tsgValue = tsg ? tsg.replace(',', '.').replace(/[^0-9.-]/g, '') : '0';
-	            const targetValue = parseInt(target.replace(/[^0-9]/g, '')) || 0;
-	            
-	            // Controleer of speler al bestaat
-	            const playerExists = state.players.some(p => p.name === playerName);
-	            if (playerExists) {
-	                console.log(`⚠️ Speler bestaat al: ${playerName}`);
-	                continue;
-	            }
-	            
-	            // Voeg speler toe
-	            state.players.push({
-	                name: playerName,
-	                tsg: tsgValue,
-	                target: targetValue
-	            });
-	            
-	            addedCount++;
-	            console.log(`✅ Speler toegevoegd: "${playerName}" (gem: ${tsgValue}, target: ${targetValue})`);
-	            
-	        } catch (error) {
-	            console.error(`❌ Fout bij verwerken regel ${i + 1}:`, error, "Regel:", line);
-	        }
-	    }
-
-	    console.log(`✅ Totaal ${addedCount} nieuwe spelers toegevoegd`);
-	    savePlayersToStorage();
-	    return addedCount;
-	}
-	
-        function normalizeText(text) {
-            if (!text) return '';
-            
-            // Vervang veelvoorkomende encoding fouten
-            const replacements = {
-                'Ã«': 'ë',
-                'Ã©': 'é',
-                'Ã¨': 'è',
-                'Ã': 'à',
-                'Ã¢': 'â',
-                'Ã¤': 'ä',
-                'Ã¥': 'å',
-                'Ã§': 'ç',
-                'Ã¯': 'ï',
-                'Ã®': 'î',
-                'Ã´': 'ô',
-                'Ã¶': 'ö',
-                'Ã¹': 'ù',
-                'Ã»': 'û',
-                'Ã¼': 'ü',
-                'Ã±': 'ñ',
-                'â‚¬': '€'
-            };
-        
-            let normalized = text.toString();
-            
-            Object.keys(replacements).forEach(bad => {
-                const regex = new RegExp(bad, 'g');
-                normalized = normalized.replace(regex, replacements[bad]);
-            });
-            
-            return normalized;
-        }
-
-        function fixCSVEncoding(content) {
-            // Eenvoudige encoding fix
-            const replacements = [
-                ['Ã«', 'ë'],
-                ['Ã©', 'é'],
-                ['Ã¨', 'è'],
-                ['Ã', 'à'],
-                ['Ã¢', 'â'],
-                ['Ã¤', 'ä'],
-                ['Ã¥', 'å'],
-                ['Ã§', 'ç'],
-                ['Ã¯', 'ï'],
-                ['Ã®', 'î'],
-                ['Ã´', 'ô'],
-                ['Ã¶', 'ö'],
-                ['Ã¹', 'ù'],
-                ['Ã»', 'û'],
-                ['Ã¼', 'ü'],
-                ['Ã±', 'ñ'],
-                ['Ã', 'Á'],
-                ['Ã', 'á'],
-                ['Ã', 'È'],
-                ['Ã', 'É'],
-                ['Ã', 'Í'],
-                ['Ã', 'Ó'],
-                ['Ã', 'Ú'],
-                ['Ã', 'Ý'],
-                ['â‚¬', '€']
-            ];
-        
-            let fixedContent = content;
-            
-            replacements.forEach(([bad, good]) => {
-                const regex = new RegExp(bad, 'g');
-                fixedContent = fixedContent.replace(regex, good);
-            });
-            
-            return fixedContent;
-        }
-
-        function loadPlayersList() {
-            const playersList = document.getElementById('playersList');
-        
-            if (state.players.length === 0) {
-                playersList.innerHTML = `
-                    <div class="no-matches">
-                        <p>Nog geen spelers toegevoegd</p>
-                        <p><small>Upload een CSV bestand met spelers</small></p>
-                    </div>
-                `;
-                return;
-            }
-            
-            state.players.sort((a, b) => a.name.localeCompare(b.name));
-            
-            let html = `
-                <div class="matches-list-title">
-                    Alle Spelers (${state.players.length} spelers)
-                </div>
-            `;
-            
-            html += `
-                <div style="
-                    display: flex;
-                    gap: 10px;
-                    margin-bottom: 20px;
-                    flex-wrap: wrap;
-                ">
-                    <button class="clear-all-btn" onclick="clearAllPlayers()">
-                        🗑️ Alle Spelers Verwijderen
-                    </button>
-                    <button class="download-btn" onclick="document.getElementById('playersFileInput').click()">
-                        📁 Nieuwe Spelers Uploaden
-                    </button>
-                </div>
-            `;
-            
-            html += `
-                <div style="margin-bottom: 20px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; font-weight: bold; padding: 10px; background: #34495e; border-radius: 8px;">
-                    <div>Naam</div>
-                    <div>Gemiddelde</div>
-                    <div>Target</div>
-                </div>
-            `;
-
-            state.players.forEach((player, index) => {
-                html += `
-                    <div style="padding: 15px; margin: 5px 0; background: rgba(255,255,255,0.05); border-radius: 5px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; align-items: center;">
-                        <div>
-                            <strong>${player.name}</strong>
-                        </div>
-                        <div style="text-align: center;">
-                            <span style="font-size: 1.1em; color: #f1c40f;">${player.tsg || 'N/A'}</span>
-                        </div>
-                        <div style="text-align: center; display: flex; justify-content: space-between; align-items: center;">
-                            <span style="font-size: 1.1em; color: #2ecc71;">${player.target}</span>
-                            <button class="delete-match-btn" onclick="deletePlayerByIndex(${index})" title="Speler verwijderen" style="position: relative; top: 0; right: 0;">×</button>
-                        </div>
-                    </div>
-                `;
-            });
-        
-            playersList.innerHTML = html;
-        }
-
-        function savePlayersToStorage() {
-            localStorage.setItem('biljartPlayers', JSON.stringify(state.players));
-        }
-        
-        function deletePlayerByIndex(playerIndex) {
-            if (playerIndex >= 0 && playerIndex < state.players.length) {
-                const player = state.players[playerIndex];
-                if (confirm(`Weet je zeker dat je ${player.name} wilt verwijderen?`)) {
-                    state.players.splice(playerIndex, 1);
-                    savePlayersToStorage();
-                    loadPlayersList();
+                
+                const playersFromGitHub = await response.json();
+                
+                if (!Array.isArray(playersFromGitHub)) {
+                    console.log('❌ Ongeldig formaat in spelers.json');
+                    return false;
                 }
-            }
-        }
-
-        function clearAllPlayers() {
-            if (confirm("Weet je zeker dat je ALLE spelers wilt verwijderen? Dit kan niet ongedaan gemaakt worden!")) {
-                state.players = [];
+                
+                console.log(`✅ ${playersFromGitHub.length} spelers geladen van GitHub`);
+                
+                // VERVANG lokale spelers met GitHub spelers
+                state.players = playersFromGitHub;
+                
+                // Sorteer op naam
+                state.players.sort((a, b) => a.name.localeCompare(b.name));
+                
+                // Sla op in localStorage voor offline gebruik
                 savePlayersToStorage();
-                loadPlayersList();
+                
+                return true;
+                
+            } catch (error) {
+                console.log('⚠️ Fout bij laden van GitHub:', error.message);
+                return false;
             }
         }
 
+        async function refreshPlayersFromGitHub() {
+            if (confirm('Spelers herladen van GitHub?\n\nLokale wijzigingen gaan verloren.')) {
+                const success = await loadPlayersFromGitHub();
+                
+                if (success) {
+                    alert(`✅ ${state.players.length} spelers geladen van GitHub!`);
+                    // Herlaad de spelers tab
+                    if (state.currentMatchesTab === 'players') {
+                        loadPlayersManagementTab();
+                    }
+                } else {
+                    alert('❌ Kon spelers niet laden van GitHub. Controleer internet of het bestand.');
+                }
+            }
+        }
 
-		async function refreshPlayersFromGitHub() {
-		    if (confirm('Spelers herladen van GitHub?\n\nLokale wijzigingen gaan verloren.')) {
-		        const success = await loadPlayersFromGitHub();
-		        
-		        if (success) {
-		            alert(`✅ ${state.players.length} spelers geladen van GitHub!`);
-		            // Herlaad de spelers tab
-		            if (state.currentMatchesTab === 'players') {
-		                loadPlayersManagementTab();
-		            }
-		        } else {
-		            alert('❌ Kon spelers niet laden van GitHub. Controleer internet of het bestand.');
-		        }
-		    }
-		}
-
-        // ==================== MATCHES TAB FUNCTIES ====================
+        // ==================== SPELERS BEHEER FUNCTIES ====================
         function showMatchesTab(tab) {
             state.currentMatchesTab = tab;
             
@@ -2395,9 +2112,622 @@
             document.getElementById(`tab${tab.charAt(0).toUpperCase() + tab.slice(1)}`).classList.add('active');
             document.getElementById(`tabContent${tab.charAt(0).toUpperCase() + tab.slice(1)}`).classList.add('active');
             
-            loadMatchesTabContent();
+            if (tab === 'players') {
+                loadPlayersManagementTab();
+            } else {
+                loadMatchesTabContent();
+            }
         }
 
+        function loadPlayersManagementTab() {
+            const container = document.getElementById('tabContentPlayers');
+            
+            updatePlayersBadge();
+            
+            const totalPlayers = state.players.length;
+            const avgTsg = totalPlayers > 0 
+                ? (state.players.reduce((sum, p) => sum + (parseFloat(p.tsg.replace(',', '.')) || 0), 0) / totalPlayers).toFixed(3)
+                : '0.000';
+            const avgTarget = totalPlayers > 0 
+                ? Math.round(state.players.reduce((sum, p) => sum + (p.target || 0), 0) / totalPlayers)
+                : 0;
+            
+            container.innerHTML = `
+                <div class="players-management-container">
+                    <div style="background: #2c3e50; border-left: 4px solid #9b59b6; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
+                        <h4>🌐 GitHub Spelers</h4>
+                        <p style="color: #bdc3c7; font-size: 0.9em; margin: 5px 0;">
+                            Spelers worden geladen van <code>spelers.json</code> in je GitHub repository.
+                            Wijzigingen moet je handmatig in GitHub aanpassen.
+                        </p>
+                        <div style="display: flex; gap: 10px; margin-top: 10px;">
+                            <button onclick="refreshPlayersFromGitHub()" 
+                                    style="background: #9b59b6; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">
+                                🔄 Herlaad van GitHub
+                            </button>
+                            <a href="https://github.com/Angello8647/biljart-app/edit/main/spelers.json" 
+                               target="_blank"
+                               style="background: #3498db; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; text-decoration: none;">
+                                ✏️ Bewerk op GitHub
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="player-form-container">
+                        <h3>${editingPlayerIndex >= 0 ? '📝 Speler Bewerken' : '➕ Nieuwe Speler Toevoegen'}</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Naam *</label>
+                                <input type="text" id="playerNameInput" class="form-input" 
+                                       placeholder="Voor- en achternaam" 
+                                       value="${editingPlayerData ? editingPlayerData.name : ''}">
+                            </div>
+                            <div class="form-group">
+                                <label>Gemiddelde (TSG)</label>
+                                <input type="text" id="playerTsgInput" class="form-input" 
+                                       placeholder="bijv. 4,864" 
+                                       value="${editingPlayerData ? editingPlayerData.tsg : ''}">
+                            </div>
+                            <div class="form-group">
+                                <label>Target</label>
+                                <input type="number" id="playerTargetInput" class="form-input" 
+                                       placeholder="bijv. 87" min="1" max="200"
+                                       value="${editingPlayerData ? editingPlayerData.target : ''}">
+                            </div>
+                            <button class="add-player-btn" onclick="${editingPlayerIndex >= 0 ? 'saveEditedPlayer()' : 'addNewPlayer()'}">
+                                ${editingPlayerIndex >= 0 ? '💾 Opslaan' : '➕ Toevoegen'}
+                            </button>
+                        </div>
+                        ${editingPlayerIndex >= 0 ? 
+                            `<button class="cancel-btn" onclick="cancelEditPlayer()" style="margin-top: 10px;">❌ Annuleren</button>` : 
+                            ''}
+                    </div>
+                    
+                    <div class="stats-summary">
+                        <div class="stats-item">
+                            <div>Totaal spelers</div>
+                            <div class="stats-value">${totalPlayers}</div>
+                        </div>
+                        <div class="stats-item">
+                            <div>Gemiddeld TSG</div>
+                            <div class="stats-value">${avgTsg.replace('.', ',')}</div>
+                        </div>
+                        <div class="stats-item">
+                            <div>Gemiddeld target</div>
+                            <div class="stats-value">${avgTarget}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="players-list-container">
+                        <h3 style="margin-bottom: 20px;">📋 Alle Spelers (${totalPlayers})</h3>
+                        
+                        <div class="bulk-actions">
+                            <button class="bulk-action-btn" onclick="exportPlayersToCSV()">
+                                📥 Exporteer naar CSV
+                            </button>
+                            <button class="bulk-action-btn" onclick="importPlayersFromCSV()">
+                                📤 Importeer CSV
+                            </button>
+                            <button class="bulk-action-btn" onclick="clearAllPlayers()" style="background: #e74c3c;">
+                                🗑️ Alle Spelers Verwijderen
+                            </button>
+                        </div>
+                        
+                        <div class="player-search">
+                            <input type="text" id="playerSearchInput" class="search-input" 
+                                   placeholder="Zoek speler..." onkeyup="filterPlayersList()">
+                        </div>
+                        
+                        ${totalPlayers === 0 ? `
+                            <div class="empty-players-message">
+                                <p>Nog geen spelers toegevoegd</p>
+                                <p><small>Voeg spelers toe via het formulier hierboven of bewerk spelers.json op GitHub</small></p>
+                            </div>
+                        ` : `
+                            <div class="players-list-header">
+                                <div>Naam</div>
+                                <div>Gemiddelde</div>
+                                <div>Target</div>
+                                <div>Acties</div>
+                            </div>
+                            <div id="playersListContent">
+                                <!-- Spelers worden hier ingeladen -->
+                            </div>
+                        `}
+                    </div>
+                </div>
+            `;
+            
+            if (totalPlayers > 0) {
+                renderPlayersList();
+            }
+        }
+
+        function renderPlayersList() {
+            const container = document.getElementById('playersListContent');
+            if (!container) return;
+            
+            const searchTerm = document.getElementById('playerSearchInput')?.value.toLowerCase() || '';
+            
+            const filteredPlayers = state.players.filter(player => 
+                player.name.toLowerCase().includes(searchTerm) ||
+                player.tsg.toLowerCase().includes(searchTerm) ||
+                player.target.toString().includes(searchTerm)
+            );
+            
+            container.innerHTML = filteredPlayers.map((player, index) => `
+                <div class="player-row ${editingPlayerIndex === index ? 'editing' : ''}" id="playerRow_${index}">
+                    <div>
+                        ${editingPlayerIndex === index ? 
+                            `<input type="text" class="editable-input" id="editName_${index}" value="${player.name}">` : 
+                            `<strong>${player.name}</strong>`}
+                    </div>
+                    <div>
+                        ${editingPlayerIndex === index ? 
+                            `<input type="text" class="editable-input" id="editTsg_${index}" value="${player.tsg}">` : 
+                            player.tsg}
+                    </div>
+                    <div>
+                        ${editingPlayerIndex === index ? 
+                            `<input type="number" class="editable-input" id="editTarget_${index}" value="${player.target}" min="1" max="200">` : 
+                            player.target}
+                    </div>
+                    <div class="player-actions">
+                        ${editingPlayerIndex === index ? `
+                            <button class="save-btn" onclick="savePlayerEdit(${index})">💾 Opslaan</button>
+                            <button class="cancel-btn" onclick="cancelEditPlayer()">❌ Annuleren</button>
+                        ` : `
+                            <button class="edit-btn" onclick="editPlayer(${index})">✏️ Bewerk</button>
+                            <button class="delete-btn" onclick="deletePlayer(${index})">🗑️ Verwijder</button>
+                        `}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterPlayersList() {
+            renderPlayersList();
+        }
+
+        function addNewPlayer() {
+            const nameInput = document.getElementById('playerNameInput');
+            const tsgInput = document.getElementById('playerTsgInput');
+            const targetInput = document.getElementById('playerTargetInput');
+            
+            const name = nameInput.value.trim();
+            const tsg = tsgInput.value.trim() || '0,000';
+            const target = parseInt(targetInput.value) || 0;
+            
+            if (!name) {
+                alert('Voer een naam in voor de speler');
+                nameInput.focus();
+                return;
+            }
+            
+            // Check voor dubbele naam
+            const existingPlayer = state.players.find(p => 
+                p.name.toLowerCase() === name.toLowerCase()
+            );
+            
+            if (existingPlayer) {
+                if (!confirm(`Speler "${name}" bestaat al. Toch toevoegen?`)) {
+                    return;
+                }
+            }
+            
+            // Parse TSG correct
+            const cleanTsg = tsg.replace(',', '.');
+            const tsgValue = parseFloat(cleanTsg) || 0;
+            const formattedTsg = tsgValue.toFixed(3).replace('.', ',');
+            
+            // Validate target
+            const validTarget = Math.max(1, Math.min(200, target || 50));
+            
+            // Add player
+            state.players.push({
+                name: name,
+                tsg: formattedTsg,
+                target: validTarget
+            });
+            
+            // Save to storage
+            savePlayersToStorage();
+            
+            // Clear form
+            nameInput.value = '';
+            tsgInput.value = '';
+            targetInput.value = '';
+            
+            // Refresh display
+            renderPlayersList();
+            updatePlayersBadge();
+            
+            alert(`✅ Speler "${name}" toegevoegd!`);
+            nameInput.focus();
+        }
+
+        function editPlayer(index) {
+            if (index < 0 || index >= state.players.length) return;
+            
+            editingPlayerIndex = index;
+            editingPlayerData = { ...state.players[index] };
+            loadPlayersManagementTab();
+        }
+
+        function saveEditedPlayer() {
+            if (editingPlayerIndex < 0 || !editingPlayerData) return;
+            
+            const nameInput = document.getElementById('playerNameInput');
+            const tsgInput = document.getElementById('playerTsgInput');
+            const targetInput = document.getElementById('playerTargetInput');
+            
+            const newName = nameInput.value.trim();
+            const newTsg = tsgInput.value.trim() || '0,000';
+            const newTarget = parseInt(targetInput.value) || 0;
+            
+            if (!newName) {
+                alert('Voer een naam in voor de speler');
+                nameInput.focus();
+                return;
+            }
+            
+            // Check for duplicate name (excluding current player)
+            const existingPlayer = state.players.find((p, idx) => 
+                idx !== editingPlayerIndex && 
+                p.name.toLowerCase() === newName.toLowerCase()
+            );
+            
+            if (existingPlayer) {
+                alert(`Speler "${newName}" bestaat al. Kies een andere naam.`);
+                return;
+            }
+            
+            // Parse TSG
+            const cleanTsg = newTsg.replace(',', '.');
+            const tsgValue = parseFloat(cleanTsg) || 0;
+            const formattedTsg = tsgValue.toFixed(3).replace('.', ',');
+            
+            // Validate target
+            const validTarget = Math.max(1, Math.min(200, newTarget || 50));
+            
+            // Update player
+            state.players[editingPlayerIndex] = {
+                name: newName,
+                tsg: formattedTsg,
+                target: validTarget
+            };
+            
+            // Save to storage
+            savePlayersToStorage();
+            
+            // Reset editing state
+            editingPlayerIndex = -1;
+            editingPlayerData = null;
+            
+            // Refresh display
+            loadPlayersManagementTab();
+            
+            alert(`✅ Speler "${newName}" bijgewerkt!`);
+        }
+
+        function savePlayerEdit(index) {
+            if (index < 0 || index >= state.players.length) return;
+            
+            const nameInput = document.getElementById(`editName_${index}`);
+            const tsgInput = document.getElementById(`editTsg_${index}`);
+            const targetInput = document.getElementById(`editTarget_${index}`);
+            
+            const newName = nameInput.value.trim();
+            const newTsg = tsgInput.value.trim() || '0,000';
+            const newTarget = parseInt(targetInput.value) || 0;
+            
+            if (!newName) {
+                alert('Voer een naam in voor de speler');
+                nameInput.focus();
+                return;
+            }
+            
+            // Check for duplicate name
+            const existingPlayer = state.players.find((p, idx) => 
+                idx !== index && 
+                p.name.toLowerCase() === newName.toLowerCase()
+            );
+            
+            if (existingPlayer) {
+                alert(`Speler "${newName}" bestaat al. Kies een andere naam.`);
+                return;
+            }
+            
+            // Parse TSG
+            const cleanTsg = newTsg.replace(',', '.');
+            const tsgValue = parseFloat(cleanTsg) || 0;
+            const formattedTsg = tsgValue.toFixed(3).replace('.', ',');
+            
+            // Validate target
+            const validTarget = Math.max(1, Math.min(200, newTarget || 50));
+            
+            // Update player
+            state.players[index] = {
+                name: newName,
+                tsg: formattedTsg,
+                target: validTarget
+            };
+            
+            // Save to storage
+            savePlayersToStorage();
+            
+            // Reset editing state
+            editingPlayerIndex = -1;
+            editingPlayerData = null;
+            
+            // Refresh display
+            renderPlayersList();
+            
+            alert(`✅ Speler "${newName}" bijgewerkt!`);
+        }
+
+        function cancelEditPlayer() {
+            editingPlayerIndex = -1;
+            editingPlayerData = null;
+            loadPlayersManagementTab();
+        }
+
+        function deletePlayer(index) {
+            if (index < 0 || index >= state.players.length) return;
+            
+            const player = state.players[index];
+            
+            if (!confirm(`Weet je zeker dat je "${player.name}" wilt verwijderen?\n\nDit kan niet ongedaan gemaakt worden.`)) {
+                return;
+            }
+            
+            // Check if player is in any active matches
+            const activeMatches = state.matches.filter(m => !m.completed);
+            const playerInMatch = activeMatches.find(m => 
+                m.p1 === player.name || m.p2 === player.name
+            );
+            
+            if (playerInMatch) {
+                alert(`⚠️ Waarschuwing: "${player.name}" speelt in een actieve match.\nVerwijder eerst de match of wijzig de spelers.`);
+                return;
+            }
+            
+            // Remove player
+            state.players.splice(index, 1);
+            
+            // Save to storage
+            savePlayersToStorage();
+            
+            // Refresh display
+            if (state.currentMatchesTab === 'players') {
+                renderPlayersList();
+                updatePlayersBadge();
+            }
+            
+            alert(`✅ Speler "${player.name}" verwijderd!`);
+        }
+
+        function updatePlayersBadge() {
+            const badge = document.getElementById('badgePlayers');
+            if (badge) {
+                badge.textContent = state.players.length;
+            }
+        }
+
+        function exportPlayersToCSV() {
+            if (state.players.length === 0) {
+                alert('Geen spelers om te exporteren.');
+                return;
+            }
+            
+            let csvContent = "Naam;Gemiddelde;Target\n";
+            
+            state.players.forEach(player => {
+                csvContent += `${player.name};${player.tsg};${player.target}\n`;
+            });
+            
+            const blob = new Blob(["\uFEFF" + csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            const url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", `biljart_spelers_${new Date().toISOString().split('T')[0]}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            alert(`✅ ${state.players.length} spelers geëxporteerd naar CSV!`);
+        }
+
+        function importPlayersFromCSV() {
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = '.csv,.txt';
+            
+            fileInput.onchange = function(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+                
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    try {
+                        let content = e.target.result;
+                        const newPlayersCount = parsePlayersCSV(content);
+                        savePlayersToStorage();
+                        
+                        // Refresh if on players tab
+                        if (state.currentMatchesTab === 'players') {
+                            loadPlayersManagementTab();
+                        }
+                        
+                        alert(`✅ Succes! ${newPlayersCount} spelers geïmporteerd.`);
+                    } catch (error) {
+                        alert(`❌ Fout bij importeren: ${error.message}`);
+                    }
+                };
+                
+                reader.readAsText(file, 'UTF-8');
+            };
+            
+            fileInput.click();
+        }
+
+        function parsePlayersCSV(csvText) {
+            console.log("=== START PARSE PLAYERS CSV ===");
+            
+            // Fix encoding
+            csvText = fixCSVEncoding(csvText);
+            
+            console.log("CSV lengte:", csvText.length);
+            
+            // Split in regels
+            const lines = csvText.split(/\r\n|\n/);
+            console.log("Aantal regels:", lines.length);
+            
+            let addedCount = 0;
+            
+            for (let i = 0; i < lines.length; i++) {
+                let line = lines[i].trim();
+                
+                // Skip lege regels
+                if (!line || line === '') {
+                    continue;
+                }
+                
+                // Complexere CSV parsing die met aanhalingstekens om kan gaan
+                let parts = [];
+                let currentPart = '';
+                let inQuotes = false;
+                let quoteChar = '';
+                
+                for (let j = 0; j < line.length; j++) {
+                    const char = line[j];
+                    
+                    if ((char === '"' || char === "'") && !inQuotes) {
+                        inQuotes = true;
+                        quoteChar = char;
+                    } else if (char === quoteChar && inQuotes) {
+                        inQuotes = false;
+                    } else if (char === ';' && !inQuotes) {
+                        parts.push(currentPart.trim());
+                        currentPart = '';
+                    } else {
+                        currentPart += char;
+                    }
+                }
+                
+                // Voeg het laatste deel toe
+                if (currentPart !== '') {
+                    parts.push(currentPart.trim());
+                }
+                
+                // Als we geen puntenkomma's vinden, probeer dan standaard split
+                if (parts.length < 3) {
+                    parts = line.split(';').map(p => p.trim());
+                }
+                
+                // Minimaal 3 velden nodig: Naam;Gemiddelde;Target
+                if (parts.length < 3) {
+                    console.log(`❌ Regel ${i + 1} heeft te weinig velden:`, line);
+                    continue;
+                }
+                
+                try {
+                    // Verwijder aanhalingstekens van alle velden
+                    const playerName = normalizeText(parts[0])
+                        .replace(/^["']+|["']+$/g, '')
+                        .trim();
+                    
+                    const tsg = parts[1]
+                        .replace(/^["']+|["']+$/g, '')
+                        .trim();
+                    
+                    const target = parts[2]
+                        .replace(/^["']+|["']+$/g, '')
+                        .trim();
+                    
+                    // Parse getallen
+                    const tsgValue = tsg ? tsg.replace(',', '.').replace(/[^0-9.-]/g, '') : '0';
+                    const targetValue = parseInt(target.replace(/[^0-9]/g, '')) || 0;
+                    
+                    // Controleer of speler al bestaat
+                    const playerExists = state.players.some(p => p.name === playerName);
+                    if (playerExists) {
+                        console.log(`⚠️ Speler bestaat al: ${playerName}`);
+                        continue;
+                    }
+                    
+                    // Voeg speler toe
+                    state.players.push({
+                        name: playerName,
+                        tsg: tsgValue,
+                        target: targetValue
+                    });
+                    
+                    addedCount++;
+                    console.log(`✅ Speler toegevoegd: "${playerName}" (gem: ${tsgValue}, target: ${targetValue})`);
+                    
+                } catch (error) {
+                    console.error(`❌ Fout bij verwerken regel ${i + 1}:`, error, "Regel:", line);
+                }
+            }
+
+            console.log(`✅ Totaal ${addedCount} nieuwe spelers toegevoegd`);
+            savePlayersToStorage();
+            return addedCount;
+        }
+
+        function normalizeText(text) {
+            if (!text) return '';
+            
+            const replacements = {
+                'Ã«': 'ë', 'Ã©': 'é', 'Ã¨': 'è', 'Ã': 'à', 'Ã¢': 'â',
+                'Ã¤': 'ä', 'Ã¥': 'å', 'Ã§': 'ç', 'Ã¯': 'ï', 'Ã®': 'î',
+                'Ã´': 'ô', 'Ã¶': 'ö', 'Ã¹': 'ù', 'Ã»': 'û', 'Ã¼': 'ü',
+                'Ã±': 'ñ', 'â‚¬': '€'
+            };
+        
+            let normalized = text.toString();
+            
+            Object.keys(replacements).forEach(bad => {
+                const regex = new RegExp(bad, 'g');
+                normalized = normalized.replace(regex, replacements[bad]);
+            });
+            
+            return normalized;
+        }
+
+        function fixCSVEncoding(content) {
+            const replacements = [
+                ['Ã«', 'ë'], ['Ã©', 'é'], ['Ã¨', 'è'], ['Ã', 'à'], ['Ã¢', 'â'],
+                ['Ã¤', 'ä'], ['Ã¥', 'å'], ['Ã§', 'ç'], ['Ã¯', 'ï'], ['Ã®', 'î'],
+                ['Ã´', 'ô'], ['Ã¶', 'ö'], ['Ã¹', 'ù'], ['Ã»', 'û'], ['Ã¼', 'ü'],
+                ['Ã±', 'ñ'], ['â‚¬', '€']
+            ];
+        
+            let fixedContent = content;
+            
+            replacements.forEach(([bad, good]) => {
+                const regex = new RegExp(bad, 'g');
+                fixedContent = fixedContent.replace(regex, good);
+            });
+            
+            return fixedContent;
+        }
+
+        function savePlayersToStorage() {
+            localStorage.setItem('biljartPlayers', JSON.stringify(state.players));
+        }
+
+        function clearAllPlayers() {
+            if (confirm("Weet je zeker dat je ALLE spelers wilt verwijderen? Dit kan niet ongedaan gemaakt worden!")) {
+                state.players = [];
+                savePlayersToStorage();
+                loadPlayersManagementTab();
+            }
+        }
+
+        // ==================== MATCHES TAB FUNCTIES ====================
         function loadMatchesTabContent() {
             updateTabBadges();
             
@@ -2407,6 +2737,8 @@
                 loadCompletedMatches();
             } else if (state.currentMatchesTab === 'downloaded') {
                 loadDownloadedMatches();
+            } else if (state.currentMatchesTab === 'players') {
+                loadPlayersManagementTab();
             }
         }
 
@@ -2414,10 +2746,12 @@
             const activeCount = state.matches.filter(m => !m.completed).length;
             const completedCount = state.matches.filter(m => m.completed).length;
             const downloadedCount = state.downloadedMatches.length;
+            const playersCount = state.players.length;
             
             document.getElementById('badgeActive').textContent = activeCount;
             document.getElementById('badgeCompleted').textContent = completedCount;
             document.getElementById('badgeDownloaded').textContent = downloadedCount;
+            document.getElementById('badgePlayers').textContent = playersCount;
         }
 
         function loadActiveMatches() {
@@ -2865,587 +3199,17 @@
             }
         }
 
-
-
-		// ==================== SPELERS BEHEER FUNCTIES ====================
-		let editingPlayerIndex = -1;
-		let editingPlayerData = null;
-		
-		function showMatchesTab(tab) {
-		    state.currentMatchesTab = tab;
-		    
-		    document.querySelectorAll('#matchesTabs .tab-btn').forEach(btn => {
-		        btn.classList.remove('active');
-		    });
-		    
-		    document.querySelectorAll('#matchesTabContent .tab-content').forEach(content => {
-		        content.classList.remove('active');
-		    });
-		    
-		    document.getElementById(`tab${tab.charAt(0).toUpperCase() + tab.slice(1)}`).classList.add('active');
-		    document.getElementById(`tabContent${tab.charAt(0).toUpperCase() + tab.slice(1)}`).classList.add('active');
-		    
-		    if (tab === 'players') {
-		        loadPlayersManagementTab();
-		    } else {
-		        loadMatchesTabContent();
-		    }
-		}
-		
-		function loadPlayersManagementTab() {
-		    const container = document.getElementById('tabContentPlayers');
-		    
-		    updatePlayersBadge();
-		    
-		    const totalPlayers = state.players.length;
-		    const avgTsg = totalPlayers > 0 
-		        ? (state.players.reduce((sum, p) => sum + (parseFloat(p.tsg.replace(',', '.')) || 0), 0) / totalPlayers).toFixed(3)
-		        : '0.000';
-		    const avgTarget = totalPlayers > 0 
-		        ? Math.round(state.players.reduce((sum, p) => sum + (p.target || 0), 0) / totalPlayers)
-		        : 0;
-		    
-		    container.innerHTML = `
-		        <div class="players-management-container">
-		            <div class="player-form-container">
-		                <h3>${editingPlayerIndex >= 0 ? '📝 Speler Bewerken' : '➕ Nieuwe Speler Toevoegen'}</h3>
-		                <div class="form-row">
-		                    <div class="form-group">
-		                        <label>Naam *</label>
-		                        <input type="text" id="playerNameInput" class="form-input" 
-		                               placeholder="Voor- en achternaam" 
-		                               value="${editingPlayerData ? editingPlayerData.name : ''}">
-		                    </div>
-		                    <div class="form-group">
-		                        <label>Gemiddelde (TSG)</label>
-		                        <input type="text" id="playerTsgInput" class="form-input" 
-		                               placeholder="bijv. 4,864" 
-		                               value="${editingPlayerData ? editingPlayerData.tsg : ''}">
-		                    </div>
-		                    <div class="form-group">
-		                        <label>Target</label>
-		                        <input type="number" id="playerTargetInput" class="form-input" 
-		                               placeholder="bijv. 87" min="1" max="200"
-		                               value="${editingPlayerData ? editingPlayerData.target : ''}">
-		                    </div>
-		                    <button class="add-player-btn" onclick="${editingPlayerIndex >= 0 ? 'saveEditedPlayer()' : 'addNewPlayer()'}">
-		                        ${editingPlayerIndex >= 0 ? '💾 Opslaan' : '➕ Toevoegen'}
-		                    </button>
-		                </div>
-		                ${editingPlayerIndex >= 0 ? 
-		                    `<button class="cancel-btn" onclick="cancelEditPlayer()" style="margin-top: 10px;">❌ Annuleren</button>` : 
-		                    ''}
-		            </div>
-		            
-		            <div class="stats-summary">
-		                <div class="stats-item">
-		                    <div>Totaal spelers</div>
-		                    <div class="stats-value">${totalPlayers}</div>
-		                </div>
-		                <div class="stats-item">
-		                    <div>Gemiddeld TSG</div>
-		                    <div class="stats-value">${avgTsg.replace('.', ',')}</div>
-		                </div>
-		                <div class="stats-item">
-		                    <div>Gemiddeld target</div>
-		                    <div class="stats-value">${avgTarget}</div>
-		                </div>
-		            </div>
-		            
-		            <div class="players-list-container">
-		                <h3 style="margin-bottom: 20px;">📋 Alle Spelers (${totalPlayers})</h3>
-		                
-		                <div class="bulk-actions">
-		                    <button class="bulk-action-btn" onclick="exportPlayersToCSV()">
-		                        📥 Exporteer naar CSV
-		                    </button>
-		                    <button class="bulk-action-btn" onclick="importPlayersFromCSV()">
-		                        📤 Importeer CSV
-		                    </button>
-		                    <button class="bulk-action-btn" onclick="clearAllPlayers()" style="background: #e74c3c;">
-		                        🗑️ Alle Spelers Verwijderen
-		                    </button>
-		                </div>
-		                
-		                <div class="player-search">
-		                    <input type="text" id="playerSearchInput" class="search-input" 
-		                           placeholder="Zoek speler..." onkeyup="filterPlayersList()">
-		                </div>
-		                
-		                ${totalPlayers === 0 ? `
-		                    <div class="empty-players-message">
-		                        <p>Nog geen spelers toegevoegd</p>
-		                        <p><small>Voeg spelers toe via het formulier hierboven</small></p>
-		                    </div>
-		                ` : `
-		                    <div class="players-list-header">
-		                        <div>Naam</div>
-		                        <div>Gemiddelde</div>
-		                        <div>Target</div>
-		                        <div>Acties</div>
-		                    </div>
-		                    <div id="playersListContent">
-		                        <!-- Spelers worden hier ingeladen -->
-		                    </div>
-		                `}
-		            </div>
-		        </div>
-		    `;
-		    
-		    if (totalPlayers > 0) {
-		        renderPlayersList();
-		    }
-
-		    html += `
-		        <div style="background: #2c3e50; border-left: 4px solid #9b59b6; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
-		            <h4>🌐 GitHub Spelers</h4>
-		            <p style="color: #bdc3c7; font-size: 0.9em; margin: 5px 0;">
-		                Spelers worden geladen van <code>spelers.json</code> in je GitHub repository.
-		                Wijzigingen moet je handmatig in GitHub aanpassen.
-		            </p>
-		            <div style="display: flex; gap: 10px; margin-top: 10px;">
-		                <button onclick="refreshPlayersFromGitHub()" 
-		                        style="background: #9b59b6; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">
-		                    🔄 Herlaad van GitHub
-		                </button>
-		                <a href="https://github.com/Angello8647/biljart-app/edit/main/spelers.json" 
-		                   target="_blank"
-		                   style="background: #3498db; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; text-decoration: none;">
-		                    ✏️ Bewerk op GitHub
-		                </a>
-		            </div>
-		        </div>
-		    `;
-		}
-		
-		function renderPlayersList() {
-		    const container = document.getElementById('playersListContent');
-		    if (!container) return;
-		    
-		    const searchTerm = document.getElementById('playerSearchInput')?.value.toLowerCase() || '';
-		    
-		    const filteredPlayers = state.players.filter(player => 
-		        player.name.toLowerCase().includes(searchTerm) ||
-		        player.tsg.toLowerCase().includes(searchTerm) ||
-		        player.target.toString().includes(searchTerm)
-		    );
-		    
-		    container.innerHTML = filteredPlayers.map((player, index) => `
-		        <div class="player-row ${editingPlayerIndex === index ? 'editing' : ''}" id="playerRow_${index}">
-		            <div>
-		                ${editingPlayerIndex === index ? 
-		                    `<input type="text" class="editable-input" id="editName_${index}" value="${player.name}">` : 
-		                    `<strong>${player.name}</strong>`}
-		            </div>
-		            <div>
-		                ${editingPlayerIndex === index ? 
-		                    `<input type="text" class="editable-input" id="editTsg_${index}" value="${player.tsg}">` : 
-		                    player.tsg}
-		            </div>
-		            <div>
-		                ${editingPlayerIndex === index ? 
-		                    `<input type="number" class="editable-input" id="editTarget_${index}" value="${player.target}" min="1" max="200">` : 
-		                    player.target}
-		            </div>
-		            <div class="player-actions">
-		                ${editingPlayerIndex === index ? `
-		                    <button class="save-btn" onclick="savePlayerEdit(${index})">💾 Opslaan</button>
-		                    <button class="cancel-btn" onclick="cancelEditPlayer()">❌ Annuleren</button>
-		                ` : `
-		                    <button class="edit-btn" onclick="editPlayer(${index})">✏️ Bewerk</button>
-		                    <button class="delete-btn" onclick="deletePlayer(${index})">🗑️ Verwijder</button>
-		                `}
-		            </div>
-		        </div>
-		    `).join('');
-		}
-		
-		function filterPlayersList() {
-		    renderPlayersList();
-		}
-		
-		function addNewPlayer() {
-		    const nameInput = document.getElementById('playerNameInput');
-		    const tsgInput = document.getElementById('playerTsgInput');
-		    const targetInput = document.getElementById('playerTargetInput');
-		    
-		    const name = nameInput.value.trim();
-		    const tsg = tsgInput.value.trim() || '0,000';
-		    const target = parseInt(targetInput.value) || 0;
-		    
-		    if (!name) {
-		        alert('Voer een naam in voor de speler');
-		        nameInput.focus();
-		        return;
-		    }
-		    
-		    // Check voor dubbele naam
-		    const existingPlayer = state.players.find(p => 
-		        p.name.toLowerCase() === name.toLowerCase()
-		    );
-		    
-		    if (existingPlayer) {
-		        if (!confirm(`Speler "${name}" bestaat al. Toch toevoegen?`)) {
-		            return;
-		        }
-		    }
-		    
-		    // Parse TSG correct
-		    const cleanTsg = tsg.replace(',', '.');
-		    const tsgValue = parseFloat(cleanTsg) || 0;
-		    const formattedTsg = tsgValue.toFixed(3).replace('.', ',');
-		    
-		    // Validate target
-		    const validTarget = Math.max(1, Math.min(200, target || 50));
-		    
-		    // Add player
-		    state.players.push({
-		        name: name,
-		        tsg: formattedTsg,
-		        target: validTarget
-		    });
-		    
-		    // Save to storage
-		    savePlayersToStorage();
-		    
-		    // Clear form
-		    nameInput.value = '';
-		    tsgInput.value = '';
-		    targetInput.value = '';
-		    
-		    // Refresh display
-		    renderPlayersList();
-		    updatePlayersBadge();
-		    
-		    // Show success message
-		    alert(`✅ Speler "${name}" toegevoegd!`);
-		    
-		    // Focus on name input for next entry
-		    nameInput.focus();
-		}
-		
-		function editPlayer(index) {
-		    if (index < 0 || index >= state.players.length) return;
-		    
-		    editingPlayerIndex = index;
-		    editingPlayerData = { ...state.players[index] };
-		    
-		    // Reload the players management tab
-		    loadPlayersManagementTab();
-		    
-		    // Scroll to the editing form
-		    document.querySelector('.player-form-container').scrollIntoView({ behavior: 'smooth' });
-		}
-		
-		function saveEditedPlayer() {
-		    if (editingPlayerIndex < 0 || !editingPlayerData) return;
-		    
-		    const nameInput = document.getElementById('playerNameInput');
-		    const tsgInput = document.getElementById('playerTsgInput');
-		    const targetInput = document.getElementById('playerTargetInput');
-		    
-		    const newName = nameInput.value.trim();
-		    const newTsg = tsgInput.value.trim() || '0,000';
-		    const newTarget = parseInt(targetInput.value) || 0;
-		    
-		    if (!newName) {
-		        alert('Voer een naam in voor de speler');
-		        nameInput.focus();
-		        return;
-		    }
-		    
-		    // Check for duplicate name (excluding current player)
-		    const existingPlayer = state.players.find((p, idx) => 
-		        idx !== editingPlayerIndex && 
-		        p.name.toLowerCase() === newName.toLowerCase()
-		    );
-		    
-		    if (existingPlayer) {
-		        alert(`Speler "${newName}" bestaat al. Kies een andere naam.`);
-		        return;
-		    }
-		    
-		    // Parse TSG
-		    const cleanTsg = newTsg.replace(',', '.');
-		    const tsgValue = parseFloat(cleanTsg) || 0;
-		    const formattedTsg = tsgValue.toFixed(3).replace('.', ',');
-		    
-		    // Validate target
-		    const validTarget = Math.max(1, Math.min(200, newTarget || 50));
-		    
-		    // Update player
-		    state.players[editingPlayerIndex] = {
-		        name: newName,
-		        tsg: formattedTsg,
-		        target: validTarget
-		    };
-		    
-		    // Save to storage
-		    savePlayersToStorage();
-		    
-		    // Reset editing state
-		    editingPlayerIndex = -1;
-		    editingPlayerData = null;
-		    
-		    // Refresh display
-		    loadPlayersManagementTab();
-		    
-		    alert(`✅ Speler "${newName}" bijgewerkt!`);
-		}
-		
-		function savePlayerEdit(index) {
-		    if (index < 0 || index >= state.players.length) return;
-		    
-		    const nameInput = document.getElementById(`editName_${index}`);
-		    const tsgInput = document.getElementById(`editTsg_${index}`);
-		    const targetInput = document.getElementById(`editTarget_${index}`);
-		    
-		    const newName = nameInput.value.trim();
-		    const newTsg = tsgInput.value.trim() || '0,000';
-		    const newTarget = parseInt(targetInput.value) || 0;
-		    
-		    if (!newName) {
-		        alert('Voer een naam in voor de speler');
-		        nameInput.focus();
-		        return;
-		    }
-		    
-		    // Check for duplicate name
-		    const existingPlayer = state.players.find((p, idx) => 
-		        idx !== index && 
-		        p.name.toLowerCase() === newName.toLowerCase()
-		    );
-		    
-		    if (existingPlayer) {
-		        alert(`Speler "${newName}" bestaat al. Kies een andere naam.`);
-		        return;
-		    }
-		    
-		    // Parse TSG
-		    const cleanTsg = newTsg.replace(',', '.');
-		    const tsgValue = parseFloat(cleanTsg) || 0;
-		    const formattedTsg = tsgValue.toFixed(3).replace('.', ',');
-		    
-		    // Validate target
-		    const validTarget = Math.max(1, Math.min(200, newTarget || 50));
-		    
-		    // Update player
-		    state.players[index] = {
-		        name: newName,
-		        tsg: formattedTsg,
-		        target: validTarget
-		    };
-		    
-		    // Save to storage
-		    savePlayersToStorage();
-		    
-		    // Reset editing state
-		    editingPlayerIndex = -1;
-		    editingPlayerData = null;
-		    
-		    // Refresh display
-		    renderPlayersList();
-		    
-		    alert(`✅ Speler "${newName}" bijgewerkt!`);
-		}
-		
-		function cancelEditPlayer() {
-		    editingPlayerIndex = -1;
-		    editingPlayerData = null;
-		    loadPlayersManagementTab();
-		}
-		
-		function deletePlayer(index) {
-		    if (index < 0 || index >= state.players.length) return;
-		    
-		    const player = state.players[index];
-		    
-		    if (!confirm(`Weet je zeker dat je "${player.name}" wilt verwijderen?\n\nDit kan niet ongedaan gemaakt worden.`)) {
-		        return;
-		    }
-		    
-		    // Check if player is in any active matches
-		    const activeMatches = state.matches.filter(m => !m.completed);
-		    const playerInMatch = activeMatches.find(m => 
-		        m.p1 === player.name || m.p2 === player.name
-		    );
-		    
-		    if (playerInMatch) {
-		        alert(`⚠️ Waarschuwing: "${player.name}" speelt in een actieve match.\nVerwijder eerst de match of wijzig de spelers.`);
-		        return;
-		    }
-		    
-		    // Remove player
-		    state.players.splice(index, 1);
-		    
-		    // Save to storage
-		    savePlayersToStorage();
-		    
-		    // Refresh display
-		    if (state.currentMatchesTab === 'players') {
-		        renderPlayersList();
-		        updatePlayersBadge();
-		    }
-		    
-		    alert(`✅ Speler "${player.name}" verwijderd!`);
-		}
-		
-		function updatePlayersBadge() {
-		    const badge = document.getElementById('badgePlayers');
-		    if (badge) {
-		        badge.textContent = state.players.length;
-		    }
-		}
-		
-		function exportPlayersToCSV() {
-		    if (state.players.length === 0) {
-		        alert('Geen spelers om te exporteren.');
-		        return;
-		    }
-		    
-		    let csvContent = "Naam;Gemiddelde;Target\n";
-		    
-		    state.players.forEach(player => {
-		        csvContent += `${player.name};${player.tsg};${player.target}\n`;
-		    });
-		    
-		    const blob = new Blob(["\uFEFF" + csvContent], { type: 'text/csv;charset=utf-8;' });
-		    const link = document.createElement("a");
-		    const url = URL.createObjectURL(blob);
-		    link.setAttribute("href", url);
-		    link.setAttribute("download", `biljart_spelers_${new Date().toISOString().split('T')[0]}.csv`);
-		    document.body.appendChild(link);
-		    link.click();
-		    document.body.removeChild(link);
-		    
-		    alert(`✅ ${state.players.length} spelers geëxporteerd naar CSV!`);
-		}
-		
-		function importPlayersFromCSV() {
-		    const fileInput = document.createElement('input');
-		    fileInput.type = 'file';
-		    fileInput.accept = '.csv,.txt';
-		    
-		    fileInput.onchange = function(event) {
-		        const file = event.target.files[0];
-		        if (!file) return;
-		        
-		        const reader = new FileReader();
-		        
-		        reader.onload = function(e) {
-		            try {
-		                let content = e.target.result;
-		                const newPlayersCount = parsePlayersCSV(content);
-		                savePlayersToStorage();
-		                
-		                // Refresh if on players tab
-		                if (state.currentMatchesTab === 'players') {
-		                    loadPlayersManagementTab();
-		                }
-		                
-		                alert(`✅ Succes! ${newPlayersCount} spelers geïmporteerd.`);
-		            } catch (error) {
-		                alert(`❌ Fout bij importeren: ${error.message}`);
-		            }
-		        };
-		        
-		        reader.readAsText(file, 'UTF-8');
-		    };
-		    
-		    fileInput.click();
-		}
-		
-		// Update de loadMatchesTabContent functie:
-		function loadMatchesTabContent() {
-		    updateTabBadges();
-		    
-		    if (state.currentMatchesTab === 'active') {
-		        loadActiveMatches();
-		    } else if (state.currentMatchesTab === 'completed') {
-		        loadCompletedMatches();
-		    } else if (state.currentMatchesTab === 'downloaded') {
-		        loadDownloadedMatches();
-		    } else if (state.currentMatchesTab === 'players') {
-		        loadPlayersManagementTab();
-		    }
-		}
-		
-		// Update de updateTabBadges functie:
-		function updateTabBadges() {
-		    const activeCount = state.matches.filter(m => !m.completed).length;
-		    const completedCount = state.matches.filter(m => m.completed).length;
-		    const downloadedCount = state.downloadedMatches.length;
-		    const playersCount = state.players.length;
-		    
-		    document.getElementById('badgeActive').textContent = activeCount;
-		    document.getElementById('badgeCompleted').textContent = completedCount;
-		    document.getElementById('badgeDownloaded').textContent = downloadedCount;
-		    document.getElementById('badgePlayers').textContent = playersCount;
-		}
-		
-		// Update de window.onload functie om players badge te initialiseren:
-		window.onload = async function() {
-		    loadStateFromStorage();
-		    
-		    // Probeer eerst spelers van GitHub te laden
-		    await loadPlayersFromGitHub();
-		    
-		    // Als GitHub leeg is, gebruik dan lokale als backup
-		    if (state.players.length === 0) {
-		        console.log('Geen spelers van GitHub, gebruik lokale backup');
-		        // Eventueel standaard spelers hier toevoegen
-		    }
-				    updateTabBadges(); // NIEUW: update badges bij opstarten
-				    // ... rest van de code blijft hetzelfde
-				};
-
-
-		// ==================== LAAD SPELERS VAN GITHUB ====================
-		async function loadPlayersFromGitHub() {
-		    try {
-		        console.log('🔁 Laad spelers van GitHub...');
-		        
-		        // URL naar je spelers.json op GitHub
-		        const url = 'https://raw.githubusercontent.com/Angello8647/biljart-app/main/spelers.json';
-		        
-		        const response = await fetch(url);
-		        
-		        if (!response.ok) {
-		            console.log('❌ GitHub spelers niet gevonden, gebruik lokale spelers');
-		            return false;
-		        }
-		        
-		        const playersFromGitHub = await response.json();
-		        
-		        if (!Array.isArray(playersFromGitHub)) {
-		            console.log('❌ Ongeldig formaat in spelers.json');
-		            return false;
-		        }
-		        
-		        console.log(`✅ ${playersFromGitHub.length} spelers geladen van GitHub`);
-		        
-		        // VERVANG lokale spelers met GitHub spelers
-		        state.players = playersFromGitHub;
-		        
-		        // Sorteer op naam
-		        state.players.sort((a, b) => a.name.localeCompare(b.name));
-		        
-		        // Sla op in localStorage voor offline gebruik
-		        savePlayersToStorage();
-		        
-		        return true;
-		        
-		    } catch (error) {
-		        console.log('⚠️ Fout bij laden van GitHub:', error.message);
-		        return false;
-		    }
-		}
-
-
-
-		
         // ==================== INITIALISATIE ====================
-        window.onload = function() {
+        window.onload = async function() {
+            clearOldCache();
+            
+            // Check authentication (backup check)
+            if (!sessionStorage.getItem('biljart_authenticated') && 
+                !window.location.search.includes('bypass')) {
+                window.location.href = "index.html";
+                return;
+            }
+
             loadStateFromStorage();
             
             // Zet standaard wachtwoord als er nog geen is
@@ -3463,14 +3227,16 @@
             }
             
             updateCurrentScoreDisplay();
+            
+            // Probeer eerst spelers van GitHub te laden
+            await loadPlayersFromGitHub();
+            
+            // Als GitHub leeg is, gebruik dan lokale als backup
+            if (state.players.length === 0) {
+                console.log('Geen spelers van GitHub, gebruik lokale backup');
+            }
+            updateTabBadges();
         };
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
