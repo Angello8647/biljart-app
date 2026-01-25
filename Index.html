@@ -1,0 +1,162 @@
+html
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biljart App - Login</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #2c3e50, #4a6491);
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        
+        .password-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .login-btn {
+            background: #2ecc71;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+        
+        .login-btn:hover {
+            background: #27ae60;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .app-info {
+            margin-top: 25px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>🔒 Biljart Score App</h1>
+        <p>Voer clubwachtwoord in:</p>
+        
+        <input type="password" id="passwordInput" class="password-input" 
+               placeholder="Wachtwoord" autofocus>
+        
+        <button onclick="checkPassword()" class="login-btn">
+            🔓 Toegang tot App
+        </button>
+        
+        <div id="errorMessage" class="error-message">
+            ❌ Onjuist wachtwoord. Probeer opnieuw.
+        </div>
+        
+        <div class="app-info">
+            <p>Koninklijke Poperingse BiljartClub</p>
+            <p>Alleen voor geautoriseerde gebruikers</p>
+        </div>
+    </div>
+
+    <script>
+        // CLUB WACHTWOORD - WIJZIG DIT!
+        const CLUB_PASSWORD = "biljart2024";
+        
+        function checkPassword() {
+            const input = document.getElementById('passwordInput').value;
+            const errorDiv = document.getElementById('errorMessage');
+            
+            if (input === CLUB_PASSWORD) {
+                // Sla op dat gebruiker ingelogd is (voor deze sessie)
+                sessionStorage.setItem('biljart_authenticated', 'true');
+                
+                // Redirect naar de hoofdapp
+                window.location.href = "biljart-app.html";
+            } else {
+                errorDiv.style.display = 'block';
+                document.getElementById('passwordInput').value = '';
+                document.getElementById('passwordInput').focus();
+                
+                // Shake animatie
+                errorDiv.style.animation = 'shake 0.5s';
+                setTimeout(() => errorDiv.style.animation = '', 500);
+            }
+        }
+        
+        // Enter toets ondersteuning
+        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+        
+        // Voeg shake animatie toe
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
+biljart-app.html (je huidige app):
+Hernoem je huidige biljart.html naar biljart-app.html
+
+Voeg bovenaan de JavaScript dit toe:
+
+javascript
+// AUTH CHECK - Voeg helemaal bovenaan je script toe
+(function() {
+    // Controleer of gebruiker ingelogd is
+    if (!sessionStorage.getItem('biljart_authenticated')) {
+        // Niet ingelogd, terug naar login
+        window.location.href = "login.html";
+        return;
+    }
+    
+    // Optioneel: auto-logout na X minuten
+    setTimeout(() => {
+        sessionStorage.removeItem('biljart_authenticated');
+        alert('Sessie verlopen. Log opnieuw in.');
+        window.location.href = "login.html";
+    }, 8 * 60 * 60 * 1000); // 8 uur
+})();
