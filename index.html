@@ -150,6 +150,11 @@
             cursor: pointer;
             font-size: 0.9em;
         }
+
+        /* Nieuwe style voor header knoppen tijdens match */
+        .header-buttons-hidden {
+            display: none !important;
+        }
         
         .home-btn {
             background: #3498db;
@@ -1194,15 +1199,10 @@
         <!-- PAGINA 5: Scoring -->
         <div id="page5" class="page">
             <div class="header">
-                <!-- Knoppen die alleen verschijnen als match AFGELOPEN is -->
-                <div id="headerButtons" style="display: none;">
+                <div id="matchHeaderButtons">
                     <button class="home-btn" onclick="showPage(1)">🏠 Hoofdmenu</button>
                     <button class="back-btn" onclick="showPage(4)">← Terug</button>
                 </div>
-                
-                <!-- Dit blijft leeg tijdens actieve match -->
-                <div id="headerSpacer" style="min-width: 150px;"></div>
-                
                 <h1 id="matchTitle"></h1>
                 <div style="width: 70px;"></div>
             </div>
@@ -2013,6 +2013,14 @@
             function updateScoringPage() {
                 const player1Card = document.getElementById('player1Card');
                 const player2Card = document.getElementById('player2Card');
+                const headerDiv = document.querySelector('#page5 .header div:first-child');
+                const totalTurns = state.player1.turns.length + state.player2.turns.length;
+                
+                if (state.matchEnded || totalTurns === 0) {
+                    headerDiv.style.display = 'block';  // Toon knoppen
+                } else {
+                    headerDiv.style.display = 'none';   // Verberg knoppen
+                }
                 
                 const currentName = state.currentPlayer === 1 ? state.currentMatch.p1 : state.currentMatch.p2;
                 const btnNameElement = document.getElementById('currentPlayerBtnName');
@@ -3369,4 +3377,5 @@
     </script>
 </body>
 </html>
+
 
