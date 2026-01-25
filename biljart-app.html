@@ -1199,6 +1199,31 @@
 		</div>
     </div>
 
+
+	<!-- AUTH CHECK - VOEG DIT TOE HELEMAAL BOVENAAN JE SCRIPT -->
+	<script>
+	(function() {
+	    // Controleer of gebruiker ingelogd is via login pagina
+	    if (!sessionStorage.getItem('biljart_authenticated') && 
+	        !window.location.search.includes('bypass')) { // bypass voor testen
+	        // Niet ingelogd, terug naar login
+	        window.location.href = "index.html";
+	        return;
+	    }
+	    
+	    // Optioneel: Auto-logout na 8 uur
+	    setTimeout(() => {
+	        sessionStorage.removeItem('biljart_authenticated');
+	        alert('Sessie verlopen. Log opnieuw in.');
+	        window.location.href = "index.html";
+	    }, 8 * 60 * 60 * 1000);
+	})();
+	</script>
+
+
+
+
+	
     <script>
         // ==================== STATE ====================
         let state = {
@@ -3434,6 +3459,7 @@
     </script>
 </body>
 </html>
+
 
 
 
