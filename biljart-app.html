@@ -949,19 +949,24 @@
         </div>
         
         <div class="matches-tabs" id="matchesTabs">
-            <button class="tab-btn active" onclick="showMatchesTab('active')" id="tabActive">
-                Actieve Matchen
-                <span class="badge" id="badgeActive">0</span>
-            </button>
-            <button class="tab-btn" onclick="showMatchesTab('completed')" id="tabCompleted">
-                Voltooide Matchen
-                <span class="badge" id="badgeCompleted">0</span>
-            </button>
-            <button class="tab-btn" onclick="showMatchesTab('downloaded')" id="tabDownloaded">
-                Gedownloade Matchen
-                <span class="badge" id="badgeDownloaded">0</span>
-            </button>
-        </div>
+		    <button class="tab-btn active" onclick="showMatchesTab('active')" id="tabActive">
+	        	Actieve Matchen
+        		<span class="badge" id="badgeActive">0</span>
+    		</button>
+	    	<button class="tab-btn" onclick="showMatchesTab('completed')" id="tabCompleted">
+		        Voltooide Matchen
+	        	<span class="badge" id="badgeCompleted">0</span>
+	    	</button>
+	    	<button class="tab-btn" onclick="showMatchesTab('downloaded')" id="tabDownloaded">
+		        Gedownloade Matchen
+        		<span class="badge" id="badgeDownloaded">0</span>
+    		</button>
+	    	<!-- NIEUW: Spelers tabblad -->
+	    	<button class="tab-btn" onclick="showMatchesTab('players')" id="tabPlayers">
+		        👥 Spelers Beheer
+	        	<span class="badge" id="badgePlayers">0</span>
+	    	</button>
+		</div>
         
         <div id="matchesTabContent">
             <div class="tab-content active" id="tabContentActive">
@@ -2615,3 +2620,4 @@
     </script>
 </body>
 </html>
+
