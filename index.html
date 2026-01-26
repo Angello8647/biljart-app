@@ -292,25 +292,83 @@
             color: white;
         }
         
-        .score-middle {
+        /* NIEUWE STIJLEN VOOR CURRENT SCORE DISPLAY BOVEN SPELERKAART */
+        .current-score-container {
+            position: relative;
+            width: 100%;
+            height: 120px;
+            margin-bottom: 20px;
+        }
+        
+        .current-score-display {
+            position: absolute;
+            top: 0;
+            width: 45%;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            z-index: 20;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .current-score-display.active {
+            display: block;
+            transform: scale(1.05);
+        }
+        
+        .current-score-display.inactive {
+            display: none;
+        }
+        
+        .current-score-display.player1-current {
+            left: 2.5%;
+            background-color: white;
+            border: 3px solid #3182ce;
+            color: black;
+        }
+        
+        .current-score-display.player2-current {
+            right: 2.5%;
+            background-color: yellow;
+            border: 3px solid #3182ce;
+            color: black;
+        }
+        
+        .current-score-label {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+        
+        .current-score-value {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #2d3748;
+        }
+        
+        .current-score-minus {
+            position: absolute;
+            bottom: -25px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-grow: 1;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
-        .score-display {
-            font-size: 50px;
-            font-weight: bold;
-            width: 90px;
-            text-align: center;
-            background: #ecf0f1;
-            color: #2c3e50;
-            padding: 5px;
-            border-radius: 10px;
-            margin-right: 5px;
-        }
-        
         .action-btn {
             padding: 16px 30px;
             font-size: 1.2em;
@@ -319,96 +377,6 @@
             cursor: pointer;
             font-weight: bold;
             letter-spacing: 0.5px;
-        }
-
-        /* CSS voor de score weergave */
-        .players-score-container {
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            height: 120px; /* Vaste hoogte voor consistentie */
-        }
-        
-        .player-score-wrapper {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 0 10px;
-        }
-        
-        .player-score-display {
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            min-width: 180px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            transform-origin: top center;
-        }
-        
-        .player1-score-display {
-            background-color: white;
-            border: 3px solid #4a5568;
-        }
-        
-        .player2-score-display {
-            background-color: yellow;
-            border: 3px solid #4a5568;
-        }
-        
-        /* Highlight actieve speler */
-        .player1-score-display.active {
-            transform: scale(1.1);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-            border-color: #3182ce;
-            z-index: 10;
-        }
-        
-        .player2-score-display.active {
-            transform: scale(1.1);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-            border-color: #3182ce;
-            z-index: 10;
-        }
-        
-        .score-label {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #2d3748;
-        }
-        
-        .score-value {
-            font-size: 3rem;
-            font-weight: bold;
-            color: #2d3748;
-        }
-        
-        /* Score controls blijven in het midden */
-        .score-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 40px;
-            margin: 30px 0;
-        }
-        
-        /* Huidige beurt indicator */
-        .current-turn-indicator {
-            text-align: center;
-            margin: 20px 0;
-        }
-        
-        .current-turn {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #2d3748;
-            padding: 10px 20px;
-            border-radius: 10px;
-            display: inline-block;
-            background-color: #e2e8f0;
         }
 
         .confirm-btn {
@@ -1300,38 +1268,31 @@
             <!-- MATCH ENDED ALERT -->
             <div id="matchEndedAlert" class="match-ended" style="display: none;"></div>
             
-            <!-- SCORE WEERGAVE BOVEN SPELERKADERS -->
-            <div class="players-score-container">
-                <div class="player-score-wrapper">
-                    <div class="player-score-display player1-score-display" id="player1ScoreDisplay">
-                        <div class="score-label">Speler 1</div>
-                        <div class="score-value" id="player1ScoreValue">0</div>
-                    </div>
+            <!-- HUIDIGE BEURT IN HET MIDDEN -->
+            <div class="current-turn-container">
+                <div class="current-turn" id="currentPlayerDisplay"></div>
+            </div>
+            
+            <!-- NIEUWE CURRENT SCORE DISPLAY BOVEN SPELERKAARTEN -->
+            <div class="current-score-container">
+                <div class="current-score-display player1-current inactive" id="player1CurrentScore">
+                    <div class="current-score-label">Huidige score</div>
+                    <div class="current-score-value">0</div>
+                    <button class="current-score-minus" onclick="changeScore(-1)">−</button>
                 </div>
                 
-                <div class="player-score-wrapper">
-                    <div class="player-score-display player2-score-display" id="player2ScoreDisplay">
-                        <div class="score-label">Speler 2</div>
-                        <div class="score-value" id="player2ScoreValue">0</div>
-                    </div>
+                <div class="current-score-display player2-current inactive" id="player2CurrentScore">
+                    <div class="current-score-label">Huidige score</div>
+                    <div class="current-score-value">0</div>
+                    <button class="current-score-minus" onclick="changeScore(-1)">−</button>
                 </div>
             </div>
             
-            <!-- SCORE CONTROLS (blijven in het midden) -->
+            <!-- PLUS KNOPPEN -->
             <div class="score-controls">
                 <button class="score-btn plus-btn left-plus" onclick="changeScore(1)">+</button>
-                
-                <div class="score-middle">
-                    <div class="score-display" id="currentScore">0</div>            
-                    <button class="score-btn minus-btn" onclick="changeScore(-1)">−</button>
-                </div>
-                
+                <div style="flex-grow: 1;"></div>
                 <button class="score-btn plus-btn right-plus" onclick="changeScore(1)">+</button>
-            </div>
-            
-            <!-- HUIDIGE BEURT INDICATOR -->
-            <div class="current-turn-indicator">
-                <div class="current-turn" id="currentPlayerDisplay"></div>
             </div>
             
             <div class="action-buttons">
@@ -1964,98 +1925,23 @@
             }
 
             function updateCurrentScoreDisplay() {
-                document.getElementById('currentScore').textContent = state.currentInput;
-            }
-
-
-            // Variabelen
-            let currentPlayer = 1; // 1 of 2
-            let player1Score = 0;
-            let player2Score = 0;
-            let currentPoints = 0;
-            
-            // Functie om de score weergave bij te werken
-            function updateScoreDisplay() {
-                // Update de score waarden
-                document.getElementById('player1ScoreValue').textContent = player1Score;
-                document.getElementById('player2ScoreValue').textContent = player2Score;
+                // Update de huidige score displays
+                document.getElementById('player1CurrentScore').querySelector('.current-score-value').textContent = state.currentInput;
+                document.getElementById('player2CurrentScore').querySelector('.current-score-value').textContent = state.currentInput;
                 
-                // Update de huidige score in het midden
-                document.getElementById('currentScore').textContent = currentPoints;
-                
-                // Update welke speler actief is
-                const player1Display = document.getElementById('player1ScoreDisplay');
-                const player2Display = document.getElementById('player2ScoreDisplay');
-                
-                if (currentPlayer === 1) {
-                    player1Display.classList.add('active');
-                    player2Display.classList.remove('active');
-                    document.getElementById('currentPlayerDisplay').textContent = "Speler 1 is aan de beurt";
-                    document.getElementById('currentPlayerBtnName').textContent = "Speler 1";
+                // Toon alleen de display van de huidige speler
+                if (state.currentPlayer === 1) {
+                    document.getElementById('player1CurrentScore').classList.remove('inactive');
+                    document.getElementById('player1CurrentScore').classList.add('active');
+                    document.getElementById('player2CurrentScore').classList.remove('active');
+                    document.getElementById('player2CurrentScore').classList.add('inactive');
                 } else {
-                    player1Display.classList.remove('active');
-                    player2Display.classList.add('active');
-                    document.getElementById('currentPlayerDisplay').textContent = "Speler 2 is aan de beurt";
-                    document.getElementById('currentPlayerBtnName').textContent = "Speler 2";
+                    document.getElementById('player1CurrentScore').classList.remove('active');
+                    document.getElementById('player1CurrentScore').classList.add('inactive');
+                    document.getElementById('player2CurrentScore').classList.remove('inactive');
+                    document.getElementById('player2CurrentScore').classList.add('active');
                 }
             }
-            
-            // Functie om score aan te passen
-            function changeScore(amount) {
-                currentPoints += amount;
-                if (currentPoints < 0) currentPoints = 0;
-                updateScoreDisplay();
-            }
-            
-            // Functie om score toe te voegen
-            function addScore() {
-                if (currentPlayer === 1) {
-                    player1Score += currentPoints;
-                } else {
-                    player2Score += currentPoints;
-                }
-                
-                // Reset huidige punten
-                currentPoints = 0;
-                
-                // Wissel speler
-                currentPlayer = currentPlayer === 1 ? 2 : 1;
-                
-                updateScoreDisplay();
-                
-                // Controleer of match is afgelopen (voeg je eigen logica toe)
-                checkMatchEnd();
-            }
-            
-            // Functie om match einde te controleren
-            function checkMatchEnd() {
-                // Voeg hier je logica toe om te controleren of de match is afgelopen
-                // Bijvoorbeeld: als een speler 50 punten heeft
-                if (player1Score >= 50 || player2Score >= 50) {
-                    const winner = player1Score >= 50 ? "Speler 1" : "Speler 2";
-                    document.getElementById('matchEndedAlert').style.display = 'block';
-                    document.getElementById('matchEndedAlert').textContent = `${winner} heeft gewonnen!`;
-                }
-            }
-            
-            // Initialiseer de weergave bij het laden van de pagina
-            updateScoreDisplay();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
 
             function updateDynamicNeededDisplay() {
                 document.querySelectorAll('.dynamic-needed').forEach(el => el.remove());
@@ -2381,6 +2267,7 @@
                         ''}
                 `;
                 
+                updateCurrentScoreDisplay();
                 updateDynamicNeededDisplay();
             }
 
@@ -3027,7 +2914,7 @@
                 
                 const replacements = {
                     'Ã«': 'ë', 'Ã©': 'é', 'Ã¨': 'è', 'Ã': 'à', 'Ã¢': 'â',
-                    'Ã¤': 'ä', 'Ã¥': 'å', 'Ã§': 'ç', 'Ã¯': 'ï', 'Ã®': 'î',
+                    'Ã¤': 'ä', 'Ã¥': 'å', 'Ãç': 'ç', 'Ã¯': 'ï', 'Ã®': 'î',
                     'Ã´': 'ô', 'Ã¶': 'ö', 'Ã¹': 'ù', 'Ã»': 'û', 'Ã¼': 'ü',
                     'Ã±': 'ñ', 'â‚¬': '€'
                 };
@@ -3045,7 +2932,7 @@
             function fixCSVEncoding(content) {
                 const replacements = [
                     ['Ã«', 'ë'], ['Ã©', 'é'], ['Ã¨', 'è'], ['Ã', 'à'], ['Ã¢', 'â'],
-                    ['Ã¤', 'ä'], ['Ã¥', 'å'], ['Ã§', 'ç'], ['Ã¯', 'ï'], ['Ã®', 'î'],
+                    ['Ã¤', 'ä'], ['Ã¥', 'å'], ['Ãç', 'ç'], ['Ã¯', 'ï'], ['Ã®', 'î'],
                     ['Ã´', 'ô'], ['Ã¶', 'ö'], ['Ã¹', 'ù'], ['Ã»', 'û'], ['Ã¼', 'ü'],
                     ['Ã±', 'ñ'], ['â‚¬', '€']
                 ];
@@ -3563,12 +3450,10 @@
                 });
             }
             
-            updateCurrentScoreDisplay();
+            updateTabBadges();
             
             // Probeer eerst spelers van GitHub te laden
             loadPlayersFromGitHub();
-            
-            updateTabBadges();
             
             // Toon pagina 1
             showPage(1);
@@ -3576,8 +3461,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
