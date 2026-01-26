@@ -1294,16 +1294,17 @@
                 <div class="current-turn" id="currentPlayerDisplay"></div>
             </div>
             
+          
             <!-- NIEUWE CURRENT SCORE DISPLAY BOVEN SPELERKAARTEN -->
             <div class="current-score-container">
                 <div class="current-score-display player1-current inactive" id="player1CurrentScore">
-                    <div class="current-score-label">Huidige score</div>
+                    <div class="current-score-name" id="player1ScoreName">Speler 1</div>
                     <div class="current-score-value">0</div>
                     <button class="current-score-minus" onclick="changeScore(-1)">−</button>
                 </div>
                 
                 <div class="current-score-display player2-current inactive" id="player2CurrentScore">
-                    <div class="current-score-label">Huidige score</div>
+                    <div class="current-score-name" id="player2ScoreName">Speler 2</div>
                     <div class="current-score-value">0</div>
                     <button class="current-score-minus" onclick="changeScore(-1)">−</button>
                 </div>
@@ -3482,4 +3483,5 @@
     </script>
 </body>
 </html>
+
 
