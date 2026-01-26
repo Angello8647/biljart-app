@@ -259,14 +259,15 @@
             min-width: 300px;
         }
         
+        /* SCORE CONTROLS */
         .score-controls {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin: 20px 0;
-            padding: 0 20px;
+            padding: 0 15px;
         }
-
+        
         .score-btn {
             width: 80px;
             height: 80px;
@@ -281,7 +282,7 @@
             transition: all 0.3s;
             flex-shrink: 0;
         }
-
+        
         .score-btn.plus-btn {
             background: #2ecc71;
             color: white;
@@ -292,30 +293,45 @@
             color: white;
         }
         
+        .score-middle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+        }
+        
+        /* Zorg dat de plus knoppen niet overlappen met de score displays */
+        .left-plus {
+            margin-left: 5px;
+        }
+        
+        .right-plus {
+            margin-right: 5px;
+        }
+        
         /* NIEUWE STIJLEN VOOR CURRENT SCORE DISPLAY BOVEN SPELERKAART */
         .current-score-container {
             position: relative;
             width: 100%;
-            height: 120px;
-            margin-bottom: 20px;
+            height: 100px; /* Verkleind van 140px */
+            margin-bottom: 10px;
         }
         
         .current-score-display {
             position: absolute;
             top: 0;
-            width: 30%;
-            padding: 20px;
-            border-radius: 15px;
+            width: 40%; /* Verkleind van 45% */
+            padding: 15px 10px;
+            border-radius: 12px;
             text-align: center;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-            z-index: 20;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 10;
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
         }
-
         /* Naam bovenaan in het current-score-display */
         .current-score-name {
             font-size: 1.2rem;
@@ -336,10 +352,11 @@
 
 
         
-        
+
         .current-score-display.active {
-            display: block;
-            transform: scale(1.05);
+        display: flex;
+        transform: scale(1.05);
+        z-index: 20;
         }
         
         .current-score-display.inactive {
@@ -347,14 +364,14 @@
         }
         
         .current-score-display.player1-current {
-            left: 2.5%;
-            background-color: white;
-            border: 3px solid #3182ce;
-            color: black;
-        }
-        
+        left: 5%; /* Iets verder van de rand */
+        background-color: white;
+        border: 3px solid #3182ce;
+        color: black;
+        }    
+    
         .current-score-display.player2-current {
-            right: 2.5%;
+            right: 5%; /* Iets verder van de rand */
             background-color: yellow;
             border: 3px solid #3182ce;
             color: black;
@@ -367,8 +384,22 @@
             color: #2d3748;
         }
         
+        .current-score-name {
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #2d3748;
+        background: rgba(0,0,0,0.05);
+        padding: 3px 10px;
+        border-radius: 15px;
+        max-width: 90%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        }
+    
         .current-score-value {
-            font-size: 3.5rem;
+            font-size: 2.5rem; /* Verkleind van 3.5rem */
             font-weight: bold;
             color: #2d3748;
         }
@@ -1963,8 +1994,11 @@
 
             function updateCurrentScoreDisplay() {
                 // Update de huidige score displays
-                document.getElementById('player1CurrentScore').querySelector('.current-score-value').textContent = state.currentInput;
-                document.getElementById('player2CurrentScore').querySelector('.current-score-value').textContent = state.currentInput;
+                const player1ScoreValue = document.getElementById('player1CurrentScore').querySelector('.current-score-value');
+                const player2ScoreValue = document.getElementById('player2CurrentScore').querySelector('.current-score-value');
+                
+                if (player1ScoreValue) player1ScoreValue.textContent = state.currentInput;
+                if (player2ScoreValue) player2ScoreValue.textContent = state.currentInput;
                 
                 // Toon alleen de display van de huidige speler
                 if (state.currentPlayer === 1) {
@@ -3498,3 +3532,4 @@
     </script>
 </body>
 </html>
+
