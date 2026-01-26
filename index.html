@@ -321,6 +321,96 @@
             letter-spacing: 0.5px;
         }
 
+        /* CSS voor de score weergave */
+        .players-score-container {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            height: 120px; /* Vaste hoogte voor consistentie */
+        }
+        
+        .player-score-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 10px;
+        }
+        
+        .player-score-display {
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            min-width: 180px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            transform-origin: top center;
+        }
+        
+        .player1-score-display {
+            background-color: white;
+            border: 3px solid #4a5568;
+        }
+        
+        .player2-score-display {
+            background-color: yellow;
+            border: 3px solid #4a5568;
+        }
+        
+        /* Highlight actieve speler */
+        .player1-score-display.active {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            border-color: #3182ce;
+            z-index: 10;
+        }
+        
+        .player2-score-display.active {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            border-color: #3182ce;
+            z-index: 10;
+        }
+        
+        .score-label {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+        
+        .score-value {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #2d3748;
+        }
+        
+        /* Score controls blijven in het midden */
+        .score-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        
+        /* Huidige beurt indicator */
+        .current-turn-indicator {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .current-turn {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2d3748;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: inline-block;
+            background-color: #e2e8f0;
+        }
+
         .confirm-btn {
             background: linear-gradient(135deg, #e74c3c, #c0392b);
             color: white;
@@ -3396,6 +3486,7 @@
     </script>
 </body>
 </html>
+
 
 
 
