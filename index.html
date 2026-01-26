@@ -1937,6 +1937,20 @@
                 
                 showPage(5);
                 updateScoringPage();
+
+
+                // Zet de namen in de score displays
+                document.getElementById('player1ScoreName').textContent = state.currentMatch.p1;
+                document.getElementById('player2ScoreName').textContent = state.currentMatch.p2;
+                
+                showPage(5);
+                updateScoringPage();
+
+                
+
+
+
+            
             }
 
             // ==================== SCORING FUNCTIES ====================
@@ -3483,5 +3497,6 @@
     </script>
 </body>
 </html>
+
 
 
