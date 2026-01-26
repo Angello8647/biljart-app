@@ -1967,6 +1967,96 @@
                 document.getElementById('currentScore').textContent = state.currentInput;
             }
 
+
+            // Variabelen
+            let currentPlayer = 1; // 1 of 2
+            let player1Score = 0;
+            let player2Score = 0;
+            let currentPoints = 0;
+            
+            // Functie om de score weergave bij te werken
+            function updateScoreDisplay() {
+                // Update de score waarden
+                document.getElementById('player1ScoreValue').textContent = player1Score;
+                document.getElementById('player2ScoreValue').textContent = player2Score;
+                
+                // Update de huidige score in het midden
+                document.getElementById('currentScore').textContent = currentPoints;
+                
+                // Update welke speler actief is
+                const player1Display = document.getElementById('player1ScoreDisplay');
+                const player2Display = document.getElementById('player2ScoreDisplay');
+                
+                if (currentPlayer === 1) {
+                    player1Display.classList.add('active');
+                    player2Display.classList.remove('active');
+                    document.getElementById('currentPlayerDisplay').textContent = "Speler 1 is aan de beurt";
+                    document.getElementById('currentPlayerBtnName').textContent = "Speler 1";
+                } else {
+                    player1Display.classList.remove('active');
+                    player2Display.classList.add('active');
+                    document.getElementById('currentPlayerDisplay').textContent = "Speler 2 is aan de beurt";
+                    document.getElementById('currentPlayerBtnName').textContent = "Speler 2";
+                }
+            }
+            
+            // Functie om score aan te passen
+            function changeScore(amount) {
+                currentPoints += amount;
+                if (currentPoints < 0) currentPoints = 0;
+                updateScoreDisplay();
+            }
+            
+            // Functie om score toe te voegen
+            function addScore() {
+                if (currentPlayer === 1) {
+                    player1Score += currentPoints;
+                } else {
+                    player2Score += currentPoints;
+                }
+                
+                // Reset huidige punten
+                currentPoints = 0;
+                
+                // Wissel speler
+                currentPlayer = currentPlayer === 1 ? 2 : 1;
+                
+                updateScoreDisplay();
+                
+                // Controleer of match is afgelopen (voeg je eigen logica toe)
+                checkMatchEnd();
+            }
+            
+            // Functie om match einde te controleren
+            function checkMatchEnd() {
+                // Voeg hier je logica toe om te controleren of de match is afgelopen
+                // Bijvoorbeeld: als een speler 50 punten heeft
+                if (player1Score >= 50 || player2Score >= 50) {
+                    const winner = player1Score >= 50 ? "Speler 1" : "Speler 2";
+                    document.getElementById('matchEndedAlert').style.display = 'block';
+                    document.getElementById('matchEndedAlert').textContent = `${winner} heeft gewonnen!`;
+                }
+            }
+            
+            // Initialiseer de weergave bij het laden van de pagina
+            updateScoreDisplay();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+
             function updateDynamicNeededDisplay() {
                 document.querySelectorAll('.dynamic-needed').forEach(el => el.remove());
                 
@@ -3486,6 +3576,7 @@
     </script>
 </body>
 </html>
+
 
 
 
