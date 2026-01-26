@@ -303,7 +303,7 @@
         .current-score-display {
             position: absolute;
             top: 0;
-            width: 45%;
+            width: 30%;
             padding: 20px;
             border-radius: 15px;
             text-align: center;
@@ -315,6 +315,27 @@
             justify-content: center;
             align-items: center;
         }
+
+        /* Naam bovenaan in het current-score-display */
+        .current-score-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #2d3748;
+            background: rgba(0,0,0,0.1);
+            padding: 5px 15px;
+            border-radius: 20px;
+            width: 90%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+
+
+
+
+        
         
         .current-score-display.active {
             display: block;
@@ -3461,3 +3482,4 @@
     </script>
 </body>
 </html>
+
