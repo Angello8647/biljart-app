@@ -254,15 +254,17 @@
         .current-turn {
             text-align: center;
             font-size: 1.2em;
-            padding: 12px 25px;
+            padding: 15px 25px; /* Redelijke padding */
             background: rgba(52, 152, 219, 0.2);
             border-radius: 10px;
-            border: 2px solid #3498db;
-            min-width: 300px;
-            flex-grow: 1;
+            border: 3px solid #3498db;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            /* VERWIJDERD: min-width en flex-grow */
+            width: auto; /* Breedte past bij inhoud */
+            min-height: 80px; /* Minimale hoogte */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
         /* NIEUWE STIJLEN VOOR WIT/GEEL SCORE DISPLAYS */
@@ -3771,4 +3773,5 @@
     </script>
 </body>
 </html>
+
 
