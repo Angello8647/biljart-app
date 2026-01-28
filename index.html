@@ -266,6 +266,16 @@
             min-height: 80px; /* Minimale hoogte */
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
+        /* Voor nabeurt situaties (meer inhoud) */
+        .current-turn.has-extra-info {
+            padding: 18px 30px;
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(39, 174, 96, 0.2));
+            border: 3px solid #27ae60;
+        }
+
+
+
+
         
         /* NIEUWE STIJLEN VOOR WIT/GEEL SCORE DISPLAYS */
         .side-score-display {
@@ -1691,6 +1701,33 @@
                 }
             }
 
+            function updateCurrentTurnSize() {
+                const currentTurn = document.getElementById('currentPlayerDisplay');
+                if (!currentTurn) return;
+                
+                // Bepaal of er extra info is
+                const hasExtraInfo = state.isNabeurt || state.firstToTarget;
+                
+                if (hasExtraInfo) {
+                    currentTurn.classList.add('has-extra-info');
+                } else {
+                    currentTurn.classList.remove('has-extra-info');
+                }
+                
+                // Optioneel: pas font size aan voor lange namen
+                const currentName = state.currentPlayer === 1 ? state.currentMatch.p1 : state.currentMatch.p2;
+                if (currentName.length > 20) {
+                    currentTurn.style.fontSize = '1em';
+                } else {
+                    currentTurn.style.fontSize = '1.2em';
+                }
+            }
+
+            
+
+
+            
+
             // NIEUWE FUNCTIE OM WIT/GEEL SCORES BIJ TE WERKEN
             function updateSideScoreDisplays() {
                 // Bepaal wie wit en wie geel is
@@ -2391,6 +2428,8 @@
                 const player2Card = document.getElementById('player2Card');
                 const headerDiv = document.querySelector('#page5 .header div:first-child');
                 const totalTurns = state.player1.turns.length + state.player2.turns.length;
+
+                updateCurrentTurnSize();
                 
                 if (state.matchEnded || totalTurns === 0) {
                     headerDiv.style.display = 'block';  // Toon knoppen
@@ -3773,5 +3812,6 @@
     </script>
 </body>
 </html>
+
 
 
