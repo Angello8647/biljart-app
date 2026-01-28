@@ -247,6 +247,8 @@
             display: flex;
             justify-content: center;
             margin: 15px 0;
+            gap: 10px;
+            align-items: stretch;
         }
         
         .current-turn {
@@ -257,6 +259,50 @@
             border-radius: 10px;
             border: 2px solid #3498db;
             min-width: 300px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        /* NIEUWE STIJLEN VOOR WIT/GEEL SCORE DISPLAYS */
+        .side-score-display {
+            flex: 0 0 80px;
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .side-score-display.white {
+            background: white;
+            color: black;
+            border: 2px solid #3182ce;
+        }
+        
+        .side-score-display.yellow {
+            background: #f1c40f;
+            color: black;
+            border: 2px solid #3182ce;
+        }
+        
+        .side-score-name {
+            font-size: 0.8em;
+            margin-bottom: 5px;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 100%;
+        }
+        
+        .side-score-value {
+            font-size: 2em;
+            font-weight: bold;
         }
         
         /* SCORE CONTROLS */
@@ -1320,9 +1366,22 @@
             <!-- MATCH ENDED ALERT -->
             <div id="matchEndedAlert" class="match-ended" style="display: none;"></div>
             
-            <!-- HUIDIGE BEURT IN HET MIDDEN -->
+            <!-- HUIDIGE BEURT IN HET MIDDEN MET WIT/GEEL SCORES -->
             <div class="current-turn-container">
+                <!-- WIT SPELER SCORE (LINKS) -->
+                <div class="side-score-display white" id="whitePlayerDisplay">
+                    <div class="side-score-name" id="whitePlayerName">Wit</div>
+                    <div class="side-score-value" id="whitePlayerScore">0</div>
+                </div>
+                
+                <!-- HUIDIGE BEURT INFO (MIDDEN) -->
                 <div class="current-turn" id="currentPlayerDisplay"></div>
+                
+                <!-- GEEL SPELER SCORE (RECHTS) -->
+                <div class="side-score-display yellow" id="yellowPlayerDisplay">
+                    <div class="side-score-name" id="yellowPlayerName">Geel</div>
+                    <div class="side-score-value" id="yellowPlayerScore">0</div>
+                </div>
             </div>
             
             <!-- NIEUWE CURRENT SCORE DISPLAY BOVEN SPELERKAARTEN -->
@@ -1578,44 +1637,6 @@
             }
 
             // ==================== HELPER FUNCTIES ====================
-
-            // Voeg deze hulpfuncties toe bij de andere helper functies (rond regel 200):
-            function enableScoreButtons() {
-                document.querySelectorAll('.score-btn').forEach(btn => {
-                    btn.disabled = false;
-                    btn.style.opacity = '1';
-                    btn.style.cursor = 'pointer';
-                });
-                
-                const confirmBtn = document.getElementById('confirmScoreBtn');
-                if (confirmBtn) {
-                    confirmBtn.disabled = false;
-                    confirmBtn.style.opacity = '1';
-                    confirmBtn.style.cursor = 'pointer';
-                }
-            }
-            
-            function disableScoreButtons() {
-                document.querySelectorAll('.score-btn').forEach(btn => {
-                    btn.disabled = true;
-                    btn.style.opacity = '0.5';
-                    btn.style.cursor = 'not-allowed';
-                });
-                
-                const confirmBtn = document.getElementById('confirmScoreBtn');
-                if (confirmBtn) {
-                    confirmBtn.disabled = true;
-                    confirmBtn.style.opacity = '0.5';
-                    confirmBtn.style.cursor = 'not-allowed';
-                }
-            }
-
-
-
-
-
-
-            
             function formatDateForInput(date) {
                 const d = new Date(date);
                 const year = d.getFullYear();
@@ -1635,6 +1656,54 @@
 
             function formatDateForCSV(dateStr) {
                 return formatDateDisplay(dateStr);
+            }
+
+            // NIEUWE FUNCTIES VOOR SCORE BUTTONS
+            function enableScoreButtons() {
+                document.querySelectorAll('.score-btn').forEach(btn => {
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                    btn.style.cursor = 'pointer';
+                });
+                
+                const confirmBtn = document.getElementById('confirmScoreBtn');
+                if (confirmBtn) {
+                    confirmBtn.disabled = false;
+                    confirmBtn.style.opacity = '1';
+                    confirmBtn.style.cursor = 'pointer';
+                }
+            }
+
+            function disableScoreButtons() {
+                document.querySelectorAll('.score-btn').forEach(btn => {
+                    btn.disabled = true;
+                    btn.style.opacity = '0.5';
+                    btn.style.cursor = 'not-allowed';
+                });
+                
+                const confirmBtn = document.getElementById('confirmScoreBtn');
+                if (confirmBtn) {
+                    confirmBtn.disabled = true;
+                    confirmBtn.style.opacity = '0.5';
+                    confirmBtn.style.cursor = 'not-allowed';
+                }
+            }
+
+            // NIEUWE FUNCTIE OM WIT/GEEL SCORES BIJ TE WERKEN
+            function updateSideScoreDisplays() {
+                // Bepaal wie wit en wie geel is
+                const whitePlayer = state.player1.isWhite ? state.player1 : state.player2;
+                const yellowPlayer = state.player2.isWhite ? state.player1 : state.player2;
+                
+                const whiteName = state.player1.isWhite ? state.currentMatch.p1 : state.currentMatch.p2;
+                const yellowName = state.player2.isWhite ? state.currentMatch.p1 : state.currentMatch.p2;
+                
+                // Update de displays
+                document.getElementById('whitePlayerName').textContent = whiteName;
+                document.getElementById('whitePlayerScore').textContent = whitePlayer.score;
+                
+                document.getElementById('yellowPlayerName').textContent = yellowName;
+                document.getElementById('yellowPlayerScore').textContent = yellowPlayer.score;
             }
 
             // ==================== PAGINA FUNCTIES ====================
@@ -2033,6 +2102,9 @@
                 document.getElementById('player1ScoreName').textContent = state.currentMatch.p1;
                 document.getElementById('player2ScoreName').textContent = state.currentMatch.p2;
                 
+                // UPDATE DE SIDE SCORE DISPLAYS
+                updateSideScoreDisplays();
+                
                 // SCHAKEL DE KNOPPEN WEER IN
                 enableScoreButtons();
                 
@@ -2049,8 +2121,6 @@
                 showPage(5);
                 updateScoringPage();
             }
-
-
 
             // ==================== SCORING FUNCTIES ====================
             window.changeScore = function(delta) {
@@ -2213,6 +2283,7 @@
                         state.currentInput = 0;
                         updateCurrentScoreDisplay();
                         document.querySelectorAll('.dynamic-needed').forEach(el => el.remove());
+                        updateSideScoreDisplays(); // UPDATE SIDE SCORES
                         updateScoringPage();
                         return;
                     } else {
@@ -2242,10 +2313,10 @@
                 state.currentInput = 0;
                 updateCurrentScoreDisplay();
                 document.querySelectorAll('.dynamic-needed').forEach(el => el.remove());
+                updateSideScoreDisplays(); // UPDATE SIDE SCORES
                 updateScoringPage();
             }
 
-            // Pas de endMatch functie aan om disableScoreButtons te gebruiken:
             function endMatch() {
                 state.matchEnded = true;
                 state.currentMatch.completed = true;
@@ -2312,6 +2383,7 @@
                 document.querySelectorAll('.dynamic-needed').forEach(el => el.remove());
                 updateScoringPage();
             }
+
             function updateScoringPage() {
                 const player1Card = document.getElementById('player1Card');
                 const player2Card = document.getElementById('player2Card');
@@ -2493,6 +2565,9 @@
                         </span>
                     </div>
                 `;
+                
+                // UPDATE DE SIDE SCORE DISPLAYS
+                updateSideScoreDisplays();
                 
                 updateCurrentScoreDisplay();
                 updateDynamicNeededDisplay();
@@ -3696,7 +3771,3 @@
     </script>
 </body>
 </html>
-
-
-
-
