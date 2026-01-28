@@ -2201,67 +2201,73 @@
             function endMatch() {
                 state.matchEnded = true;
                 state.currentMatch.completed = true;
-            
+                
                 const originalP1 = state.currentMatch.originalP1;
                 const originalP2 = state.currentMatch.originalP2;
                 
                 let winner;
+                let winnaarInfo = '';
                 
-                // Bepaal de winnaar op basis van wie eerst het target bereikte
-                if (state.firstToTarget === 1) {
-                    winner = originalP1;
-                } else if (state.firstToTarget === 2) {
-                    winner = originalP2;
-                } else {
-                    // Dit zou niet moeten gebeuren, maar voor de zekerheid
-                    winner = state.player1.score >= state.player1.target ? originalP1 : originalP2;
-                }
-                
-                // Bereken eindscore
-                let finalScore1, finalScore2;
+                // Belangrijk: We moeten rekening houden met wie met wit speelt
+                // state.currentMatch.whitePlayer is 1 of 2, wat aangeeft wie met wit speelt
                 
                 if (state.currentMatch.whitePlayer === 1) {
-                    finalScore1 = state.player1.score;
-                    finalScore2 = state.player2.score;
-                } else {
-                    finalScore1 = state.player2.score;
-                    finalScore2 = state.player1.score;
-                }
-                
-                state.currentMatch.p1Score = finalScore1;
-                state.currentMatch.p2Score = finalScore2;
-                state.currentMatch.winner = winner;
-                
-                if (state.currentMatch.whitePlayer === 1) {
+                    // Geen wisseling: speler 1 speelde met wit
+                    // Dus huidige speler1 is de originele speler1
+                    if (state.firstToTarget === 1) {
+                        winner = originalP1; // Speler 1 (wit) heeft gewonnen
+                        winnaarInfo = `${originalP1} bereikte als eerste zijn target. ${originalP2} kreeg nog één nabeurt.`;
+                    } else if (state.firstToTarget === 2) {
+                        winner = originalP2; // Speler 2 (geel) heeft gewonnen
+                        winnaarInfo = `${originalP2} bereikte als eerste zijn target. ${originalP1} kreeg geen nabeurt.`;
+                    }
+                    
+                    // Eindscore berekenen (geen wisseling nodig)
+                    state.currentMatch.p1Score = state.player1.score;
+                    state.currentMatch.p2Score = state.player2.score;
+                    
                     state.currentMatch.p1Turns = [...state.player1.turns];
                     state.currentMatch.p2Turns = [...state.player2.turns];
                     state.currentMatch.p1Highest = state.player1.highestSeries;
                     state.currentMatch.p2Highest = state.player2.highestSeries;
                 } else {
+                    // WEL wisseling: speler 2 speelde met wit
+                    // Dus huidige speler1 is eigenlijk de originele speler2 (die met wit speelt)
+                    // En huidige speler2 is de originele speler1
+                    
+                    if (state.firstToTarget === 1) {
+                        // Huidige speler1 (die is originele speler2) heeft gewonnen
+                        winner = originalP2; // Originele speler 2 (wit) heeft gewonnen
+                        winnaarInfo = `${originalP2} bereikte als eerste zijn target. ${originalP1} kreeg nog één nabeurt.`;
+                    } else if (state.firstToTarget === 2) {
+                        // Huidige speler2 (die is originele speler1) heeft gewonnen
+                        winner = originalP1; // Originele speler 1 (geel) heeft gewonnen
+                        winnaarInfo = `${originalP1} bereikte als eerste zijn target. ${originalP2} kreeg geen nabeurt.`;
+                    }
+                    
+                    // Eindscore berekenen - hier moeten we WEL wisselen
+                    // Omdat de spelers zijn omgewisseld in de UI
+                    state.currentMatch.p1Score = state.player2.score; // Originele speler 1
+                    state.currentMatch.p2Score = state.player1.score; // Originele speler 2
+                    
                     state.currentMatch.p1Turns = [...state.player2.turns];
                     state.currentMatch.p2Turns = [...state.player1.turns];
                     state.currentMatch.p1Highest = state.player2.highestSeries;
                     state.currentMatch.p2Highest = state.player1.highestSeries;
                 }
-            
+                
+                state.currentMatch.winner = winner;
+                
                 saveStateToStorage();
                 
                 const matchEndedAlert = document.getElementById('matchEndedAlert');
                 matchEndedAlert.style.display = 'block';
-                
-                let winnaarInfo = '';
-                if (state.firstToTarget === 1) {
-                    winnaarInfo = `${originalP1} bereikte als eerste zijn target. ${originalP2} kreeg nog één nabeurt.`;
-                } else if (state.firstToTarget === 2) {
-                    winnaarInfo = `${originalP2} bereikte als eerste zijn target. ${originalP1} kreeg geen nabeurt.`;
-                }
-                
                 matchEndedAlert.innerHTML = `
                     🏁 MATCH AFGELOPEN!<br>
                     🏆 WINNAAR: ${winner}<br>
                     <small>${winnaarInfo}</small>
                 `;
-            
+                
                 // Schakel de score knoppen uit
                 document.querySelectorAll('.score-btn').forEach(btn => {
                     btn.disabled = true;
@@ -3661,5 +3667,6 @@
     </script>
 </body>
 </html>
+
 
 
