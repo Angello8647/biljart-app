@@ -1931,10 +1931,25 @@
                 
                 const whitePlayer = state.selectedWhitePlayer;
                 
-                state.player1 = { score: 0, turns: [], target: 0, beurtNummer: 1, highestSeries: 0, isWhite: false };
-                state.player2 = { score: 0, turns: [], target: 0, beurtNummer: 1, highestSeries: 0, isWhite: false };
-                state.firstToTarget = null; // Reset eerste die target bereikt
-                state.isNabeurt = false; // Reset nabeurt status
+                state.player1 = { 
+                    score: 0, 
+                    turns: [], 
+                    target: 0, 
+                    beurtNummer: 1, 
+                    highestSeries: 0, 
+                    isWhite: false 
+                };
+                state.player2 = { 
+                    score: 0, 
+                    turns: [], 
+                    target: 0, 
+                    beurtNummer: 1, 
+                    highestSeries: 0, 
+                    isWhite: false 
+                };
+                state.firstToTarget = null;
+                state.isNabeurt = false;
+                state.currentInput = 0;
                 
                 state.currentMatch.originalP1 = state.currentMatch.p1;
                 state.currentMatch.originalP2 = state.currentMatch.p2;
@@ -1964,7 +1979,6 @@
                 state.matchEnded = false;
                 state.isFirstPlayerInRound = true;
                 state.pendingEnd = false;
-                state.currentInput = 0;
                 
                 document.getElementById('matchEndedAlert').style.display = 'none';
                 
@@ -1981,7 +1995,32 @@
 
             // ==================== SCORING FUNCTIES ====================
             window.changeScore = function(delta) {
-                state.currentInput = Math.max(0, state.currentInput + delta);
+                const player = state.currentPlayer === 1 ? state.player1 : state.player2;
+                const target = state.currentPlayer === 1 ? state.player1.target : state.player2.target;
+                
+                // Bereken wat de nieuwe score zou zijn als we delta toevoegen
+                const potentialNewInput = state.currentInput + delta;
+                const potentialNewTotalScore = player.score + potentialNewInput;
+                
+                // Als de speler al zijn target heeft bereikt, laat hem geen punten meer toevoegen
+                if (player.score >= target) {
+                    state.currentInput = 0;
+                    alert("Speler heeft al zijn target bereikt! Klik op 'Einde beurt' om door te gaan.");
+                    return;
+                }
+                
+                // Als de nieuwe totaalscore boven het target zou komen, beperk dan
+                if (potentialNewTotalScore > target) {
+                    // Bereken het maximale aantal punten dat nog mag worden toegevoegd
+                    const maxAllowed = target - player.score;
+                    state.currentInput = maxAllowed;
+                    updateCurrentScoreDisplay();
+                    updateDynamicNeededDisplay();
+                    return;
+                }
+                
+                // Normale situatie: voeg delta toe, maar zorg dat het niet negatief wordt
+                state.currentInput = Math.max(0, potentialNewInput);
                 updateCurrentScoreDisplay();
                 updateDynamicNeededDisplay();
             }
@@ -2075,6 +2114,12 @@
                 const player = state.currentPlayer === 1 ? state.player1 : state.player2;
                 const target = state.currentPlayer === 1 ? state.player1.target : state.player2.target;
                 
+                // Als speler al zijn target heeft bereikt, stop dan
+                if (player.score >= target) {
+                    alert("Speler heeft al zijn target bereikt! Klik op 'Einde beurt' om door te gaan.");
+                    return;
+                }
+                
                 // Voeg score toe
                 player.score += score;
                 player.turns.push(score);
@@ -2085,14 +2130,8 @@
                 
                 player.beurtNummer++;
                 
-                // Controleer of target bereikt is
+                // Controleer of target bereikt is IN DEZE BEURT
                 const targetReached = player.score >= target;
-                
-                // Als dit een nabeurt is, eindig de match na deze beurt
-                if (state.isNabeurt) {
-                    endMatch();
-                    return;
-                }
                 
                 // Als target bereikt en eerste die target bereikt
                 if (targetReached && state.firstToTarget === null) {
@@ -2115,6 +2154,12 @@
                         endMatch();
                         return;
                     }
+                }
+                
+                // Als dit een nabeurt is, eindig de match na deze beurt
+                if (state.isNabeurt) {
+                    endMatch();
+                    return;
                 }
                 
                 // Normale beurtwisseling (geen target bereikt)
@@ -3597,3 +3642,4 @@
     </script>
 </body>
 </html>
+
