@@ -1931,6 +1931,7 @@
                 
                 const whitePlayer = state.selectedWhitePlayer;
                 
+                // RESET ALLE SPELER VARIABELEN
                 state.player1 = { 
                     score: 0, 
                     turns: [], 
@@ -1989,18 +1990,31 @@
                 document.getElementById('player1ScoreName').textContent = state.currentMatch.p1;
                 document.getElementById('player2ScoreName').textContent = state.currentMatch.p2;
                 
+                // SCHAKEL DE KNOPPEN WEER IN VOOR DE NIEUWE MATCH
+                document.querySelectorAll('.score-btn').forEach(btn => {
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                    btn.style.cursor = 'pointer';
+                });
+                
+                document.getElementById('confirmScoreBtn').disabled = false;
+                document.getElementById('confirmScoreBtn').style.opacity = '1';
+                document.getElementById('confirmScoreBtn').style.cursor = 'pointer';
+                
                 showPage(5);
                 updateScoringPage();
             }
 
             // ==================== SCORING FUNCTIES ====================
             window.changeScore = function(delta) {
+                // Controleer of match is afgelopen
+                if (state.matchEnded) {
+                    alert("Match is afgelopen! Start een nieuwe match.");
+                    return;
+                }
+                
                 const player = state.currentPlayer === 1 ? state.player1 : state.player2;
                 const target = state.currentPlayer === 1 ? state.player1.target : state.player2.target;
-                
-                // Bereken wat de nieuwe score zou zijn als we delta toevoegen
-                const potentialNewInput = state.currentInput + delta;
-                const potentialNewTotalScore = player.score + potentialNewInput;
                 
                 // Als de speler al zijn target heeft bereikt, laat hem geen punten meer toevoegen
                 if (player.score >= target) {
@@ -2008,6 +2022,10 @@
                     alert("Speler heeft al zijn target bereikt! Klik op 'Einde beurt' om door te gaan.");
                     return;
                 }
+                
+                // Bereken wat de nieuwe score zou zijn als we delta toevoegen
+                const potentialNewInput = state.currentInput + delta;
+                const potentialNewTotalScore = player.score + potentialNewInput;
                 
                 // Als de nieuwe totaalscore boven het target zou komen, beperk dan
                 if (potentialNewTotalScore > target) {
@@ -2105,8 +2123,9 @@
             }
 
             window.addScore = function() {
+                // Controleer of match is afgelopen
                 if (state.matchEnded) {
-                    alert("Match is afgelopen! Klik op hoofdmenu om nieuwe match te spelen");
+                    alert("Match is afgelopen! Klik op hoofdmenu om een nieuwe match te starten.");
                     return;
                 }
                 
@@ -3642,4 +3661,5 @@
     </script>
 </body>
 </html>
+
 
