@@ -1500,7 +1500,7 @@
                     target2: 0
                 },
                 currentMatchesTab: 'active',
-                firstToTarget: null // NIEUW: wie bereikte als eerste het target?
+                player1ReachedTarget: false // NIEUW: geeft aan of speler 1 zijn target heeft bereikt
             };
 
             window.editingPlayerIndex = -1;
@@ -1932,7 +1932,7 @@
                 
                 state.player1 = { score: 0, turns: [], target: 0, beurtNummer: 1, highestSeries: 0, isWhite: false };
                 state.player2 = { score: 0, turns: [], target: 0, beurtNummer: 1, highestSeries: 0, isWhite: false };
-                state.firstToTarget = null; // Reset eerste die target bereikt
+                state.player1ReachedTarget = false; // Reset
                 
                 state.currentMatch.originalP1 = state.currentMatch.p1;
                 state.currentMatch.originalP2 = state.currentMatch.p2;
@@ -2095,42 +2095,25 @@
                 const targetReached = player.score >= target;
                 
                 if (targetReached) {
-                    // Eerste speler die target bereikt?
-                    if (state.firstToTarget === null) {
-                        state.firstToTarget = state.currentPlayer;
-                    }
-                    
                     if (state.currentPlayer === 1) {
-                        if (state.isFirstPlayerInRound) {
-                            // Speler 1 (eerste in ronde) bereikt target -> speler 2 krijgt nabeurt
-                            state.currentPlayer = 2;
-                            state.isFirstPlayerInRound = false;
-                            state.pendingEnd = true;
-                        } else {
-                            // Speler 1 (tweede in ronde) bereikt target -> match eindigt
-                            endMatch();
-                        }
+                        // Speler 1 behaalt target: beurt eindigt, speler 2 speelt verder
+                        state.player1ReachedTarget = true;
+                        state.currentPlayer = 2;
+                        state.isFirstPlayerInRound = false;
+                        state.pendingEnd = false;
                     } else {
-                        // Speler 2
-                        if (state.pendingEnd) {
-                            // Speler 2 heeft nabeurt en bereikt target -> speler 2 wint
-                            endMatch();
-                        } else if (state.isFirstPlayerInRound) {
-                            // Speler 2 (eerste in ronde) bereikt target -> speler 1 krijgt nabeurt
-                            state.currentPlayer = 1;
-                            state.isFirstPlayerInRound = false;
-                            state.pendingEnd = true;
-                        } else {
-                            // Speler 2 (tweede in ronde) bereikt target -> match eindigt
-                            endMatch();
-                        }
+                        // Speler 2 behaalt target: match eindigt onmiddellijk
+                        endMatch();
+                        return;
                     }
                 } else {
                     // Target niet bereikt
-                    if (state.pendingEnd) {
-                        // Nabeurt gespeeld maar target niet bereikt -> match eindigt
+                    if (state.currentPlayer === 2 && state.player1ReachedTarget) {
+                        // Speler 2 eindigt beurt zonder target te behalen, terwijl speler 1 wel target heeft
                         endMatch();
+                        return;
                     } else {
+                        // Normale beurtwisseling
                         if (state.isFirstPlayerInRound) {
                             state.currentPlayer = 2;
                             state.isFirstPlayerInRound = false;
@@ -2159,27 +2142,23 @@
                 let winner;
                 
                 // Bepaal de winnaar
-                if (state.firstToTarget === 1) {
-                    // Speler 1 bereikte als eerste het target
+                if (state.player1ReachedTarget) {
                     if (state.player2.score >= state.player2.target) {
-                        // Speler 2 bereikte ook target in nabeurt -> speler 2 wint
+                        // Speler 2 bereikte ook target -> speler 2 wint
                         winner = originalP2;
                     } else {
                         // Speler 2 bereikte target niet -> speler 1 wint
                         winner = originalP1;
                     }
-                } else if (state.firstToTarget === 2) {
-                    // Speler 2 bereikte als eerste het target
-                    if (state.player1.score >= state.player1.target) {
-                        // Speler 1 bereikte ook target in nabeurt -> speler 1 wint
-                        winner = originalP1;
-                    } else {
-                        // Speler 1 bereikte target niet -> speler 2 wint
-                        winner = originalP2;
-                    }
                 } else {
-                    // Geen van beide bereikte target? (onwaarschijnlijk maar voor veiligheid)
-                    winner = state.player1.score >= state.player1.target ? originalP1 : originalP2;
+                    // Speler 1 heeft target niet bereikt
+                    if (state.player2.score >= state.player2.target) {
+                        // Speler 2 bereikte target -> speler 2 wint
+                        winner = originalP2;
+                    } else {
+                        // Geen van beiden bereikte target (kan niet, maar voor veiligheid)
+                        winner = state.player1.score > state.player2.score ? originalP1 : originalP2;
+                    }
                 }
                 
                 if (state.currentMatch.whitePlayer === 1) {
@@ -2213,13 +2192,11 @@
                 matchEndedAlert.innerHTML = `
                     🏁 MATCH AFGELOPEN!<br>
                     🏆 WINNAAR: ${winner}<br>
-                    ${state.firstToTarget === 1 ? 
+                    ${state.player1ReachedTarget ? 
                         (state.player2.score >= state.player2.target ? 
-                            '(Speler 2 behaalde target in nabeurt)' : 
-                            '(Speler 1 behaalde target, speler 2 niet in nabeurt)') :
-                        (state.player1.score >= state.player1.target ?
-                            '(Speler 1 behaalde target in nabeurt)' :
-                            '(Speler 2 behaalde target, speler 1 niet in nabeurt)')}
+                            '(Speler 2 behaalde target in zijn beurt)' : 
+                            '(Speler 1 behaalde target, speler 2 niet)') :
+                        '(Speler 2 behaalde target, speler 1 niet)'}
                 `;
             
                 document.querySelectorAll('.dynamic-needed').forEach(el => el.remove());
@@ -2383,13 +2360,13 @@
                     Beurt ${currentBeurtNummer} voor ${currentName}
                 </div>`;
                 
-                if (state.pendingEnd) {
+                if (state.player1ReachedTarget && state.currentPlayer === 2) {
                     turnInfo += `<div style="margin-top: 10px; color: #e74c3c; font-size: 0.9em; font-weight: bold;">
-                        ⏱️ NABEURT! ${state.firstToTarget === 1 ? state.currentMatch.p2 : state.currentMatch.p1} moet nog spelen
+                        ⚠️ Speler 1 heeft target bereikt! Speler 2 moet nu target halen om te winnen.
                     </div>`;
-                } else if (state.firstToTarget !== null) {
+                } else if (state.player1ReachedTarget) {
                     turnInfo += `<div style="margin-top: 10px; color: #27ae60; font-size: 0.9em; font-weight: bold;">
-                        ✅ ${state.firstToTarget === 1 ? state.currentMatch.p1 : state.currentMatch.p2} heeft target bereikt!
+                        ✅ Speler 1 heeft target bereikt!
                     </div>`;
                 }
                 
@@ -3532,16 +3509,14 @@
                     
                     // Bepaal welke regel er werd toegepast
                     let regel = "Standaard";
-                    if (match.winner) {
-                        if (match.winner === p1 && p2Score >= target2) {
-                            regel = "Nabeurt gewonnen door Speler 2";
-                        } else if (match.winner === p2 && p1Score >= target1) {
-                            regel = "Nabeurt gewonnen door Speler 1";
-                        } else if (match.winner === p1 && p2Score < target2) {
-                            regel = "Speler 1 won, nabeurt verloren door Speler 2";
-                        } else if (match.winner === p2 && p1Score < target1) {
-                            regel = "Speler 2 won, nabeurt verloren door Speler 1";
-                        }
+                    if (match.winner === p1 && p2Score >= target2) {
+                        regel = "Speler 1 won, Speler 2 behaalde ook target";
+                    } else if (match.winner === p1 && p2Score < target2) {
+                        regel = "Speler 1 won, Speler 2 behaalde target niet";
+                    } else if (match.winner === p2 && p1Score >= target1) {
+                        regel = "Speler 2 won, Speler 1 behaalde ook target";
+                    } else if (match.winner === p2 && p1Score < target1) {
+                        regel = "Speler 2 won, Speler 1 behaalde target niet";
                     }
                     
                     csvContent += `${formatDateForCSV(match.date)};${match.id};${p1};${p2};${target1};${target2};`;
