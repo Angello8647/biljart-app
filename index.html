@@ -1578,6 +1578,44 @@
             }
 
             // ==================== HELPER FUNCTIES ====================
+
+            // Voeg deze hulpfuncties toe bij de andere helper functies (rond regel 200):
+            function enableScoreButtons() {
+                document.querySelectorAll('.score-btn').forEach(btn => {
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                    btn.style.cursor = 'pointer';
+                });
+                
+                const confirmBtn = document.getElementById('confirmScoreBtn');
+                if (confirmBtn) {
+                    confirmBtn.disabled = false;
+                    confirmBtn.style.opacity = '1';
+                    confirmBtn.style.cursor = 'pointer';
+                }
+            }
+            
+            function disableScoreButtons() {
+                document.querySelectorAll('.score-btn').forEach(btn => {
+                    btn.disabled = true;
+                    btn.style.opacity = '0.5';
+                    btn.style.cursor = 'not-allowed';
+                });
+                
+                const confirmBtn = document.getElementById('confirmScoreBtn');
+                if (confirmBtn) {
+                    confirmBtn.disabled = true;
+                    confirmBtn.style.opacity = '0.5';
+                    confirmBtn.style.cursor = 'not-allowed';
+                }
+            }
+
+
+
+
+
+
+            
             function formatDateForInput(date) {
                 const d = new Date(date);
                 const year = d.getFullYear();
@@ -1951,6 +1989,7 @@
                 state.firstToTarget = null;
                 state.isNabeurt = false;
                 state.currentInput = 0;
+                state.matchEnded = false; // ZET DIT EXPLICIET OP FALSE
                 
                 state.currentMatch.originalP1 = state.currentMatch.p1;
                 state.currentMatch.originalP2 = state.currentMatch.p2;
@@ -1977,11 +2016,15 @@
                 
                 state.currentPlayer = 1;
                 state.turnNumber = 1;
-                state.matchEnded = false;
                 state.isFirstPlayerInRound = true;
                 state.pendingEnd = false;
                 
-                document.getElementById('matchEndedAlert').style.display = 'none';
+                // VERWIJDER de match ended alert
+                const matchEndedAlert = document.getElementById('matchEndedAlert');
+                if (matchEndedAlert) {
+                    matchEndedAlert.style.display = 'none';
+                    matchEndedAlert.innerHTML = '';
+                }
                 
                 document.getElementById('matchTitle').textContent = 
                     `${state.currentMatch.p1} vs ${state.currentMatch.p2}`;
@@ -1990,20 +2033,24 @@
                 document.getElementById('player1ScoreName').textContent = state.currentMatch.p1;
                 document.getElementById('player2ScoreName').textContent = state.currentMatch.p2;
                 
-                // SCHAKEL DE KNOPPEN WEER IN VOOR DE NIEUWE MATCH
-                document.querySelectorAll('.score-btn').forEach(btn => {
-                    btn.disabled = false;
-                    btn.style.opacity = '1';
-                    btn.style.cursor = 'pointer';
-                });
+                // SCHAKEL DE KNOPPEN WEER IN
+                enableScoreButtons();
                 
-                document.getElementById('confirmScoreBtn').disabled = false;
-                document.getElementById('confirmScoreBtn').style.opacity = '1';
-                document.getElementById('confirmScoreBtn').style.cursor = 'pointer';
+                // Reset de current score display
+                document.getElementById('player1CurrentScore').querySelector('.current-score-value').textContent = '0';
+                document.getElementById('player2CurrentScore').querySelector('.current-score-value').textContent = '0';
+                
+                // Toon alleen de display van de huidige speler
+                document.getElementById('player1CurrentScore').classList.remove('inactive');
+                document.getElementById('player1CurrentScore').classList.add('active');
+                document.getElementById('player2CurrentScore').classList.remove('active');
+                document.getElementById('player2CurrentScore').classList.add('inactive');
                 
                 showPage(5);
                 updateScoringPage();
             }
+
+
 
             // ==================== SCORING FUNCTIES ====================
             window.changeScore = function(delta) {
@@ -2198,6 +2245,7 @@
                 updateScoringPage();
             }
 
+            // Pas de endMatch functie aan om disableScoreButtons te gebruiken:
             function endMatch() {
                 state.matchEnded = true;
                 state.currentMatch.completed = true;
@@ -2208,21 +2256,16 @@
                 let winner;
                 let winnaarInfo = '';
                 
-                // Belangrijk: We moeten rekening houden met wie met wit speelt
-                // state.currentMatch.whitePlayer is 1 of 2, wat aangeeft wie met wit speelt
-                
                 if (state.currentMatch.whitePlayer === 1) {
                     // Geen wisseling: speler 1 speelde met wit
-                    // Dus huidige speler1 is de originele speler1
                     if (state.firstToTarget === 1) {
-                        winner = originalP1; // Speler 1 (wit) heeft gewonnen
+                        winner = originalP1;
                         winnaarInfo = `${originalP1} bereikte als eerste zijn target. ${originalP2} kreeg nog één nabeurt.`;
                     } else if (state.firstToTarget === 2) {
-                        winner = originalP2; // Speler 2 (geel) heeft gewonnen
+                        winner = originalP2;
                         winnaarInfo = `${originalP2} bereikte als eerste zijn target. ${originalP1} kreeg geen nabeurt.`;
                     }
                     
-                    // Eindscore berekenen (geen wisseling nodig)
                     state.currentMatch.p1Score = state.player1.score;
                     state.currentMatch.p2Score = state.player2.score;
                     
@@ -2232,23 +2275,16 @@
                     state.currentMatch.p2Highest = state.player2.highestSeries;
                 } else {
                     // WEL wisseling: speler 2 speelde met wit
-                    // Dus huidige speler1 is eigenlijk de originele speler2 (die met wit speelt)
-                    // En huidige speler2 is de originele speler1
-                    
                     if (state.firstToTarget === 1) {
-                        // Huidige speler1 (die is originele speler2) heeft gewonnen
-                        winner = originalP2; // Originele speler 2 (wit) heeft gewonnen
+                        winner = originalP2;
                         winnaarInfo = `${originalP2} bereikte als eerste zijn target. ${originalP1} kreeg nog één nabeurt.`;
                     } else if (state.firstToTarget === 2) {
-                        // Huidige speler2 (die is originele speler1) heeft gewonnen
-                        winner = originalP1; // Originele speler 1 (geel) heeft gewonnen
+                        winner = originalP1;
                         winnaarInfo = `${originalP1} bereikte als eerste zijn target. ${originalP2} kreeg geen nabeurt.`;
                     }
                     
-                    // Eindscore berekenen - hier moeten we WEL wisselen
-                    // Omdat de spelers zijn omgewisseld in de UI
-                    state.currentMatch.p1Score = state.player2.score; // Originele speler 1
-                    state.currentMatch.p2Score = state.player1.score; // Originele speler 2
+                    state.currentMatch.p1Score = state.player2.score;
+                    state.currentMatch.p2Score = state.player1.score;
                     
                     state.currentMatch.p1Turns = [...state.player2.turns];
                     state.currentMatch.p2Turns = [...state.player1.turns];
@@ -2261,28 +2297,21 @@
                 saveStateToStorage();
                 
                 const matchEndedAlert = document.getElementById('matchEndedAlert');
-                matchEndedAlert.style.display = 'block';
-                matchEndedAlert.innerHTML = `
-                    🏁 MATCH AFGELOPEN!<br>
-                    🏆 WINNAAR: ${winner}<br>
-                    <small>${winnaarInfo}</small>
-                `;
+                if (matchEndedAlert) {
+                    matchEndedAlert.style.display = 'block';
+                    matchEndedAlert.innerHTML = `
+                        🏁 MATCH AFGELOPEN!<br>
+                        🏆 WINNAAR: ${winner}<br>
+                        <small>${winnaarInfo}</small>
+                    `;
+                }
                 
-                // Schakel de score knoppen uit
-                document.querySelectorAll('.score-btn').forEach(btn => {
-                    btn.disabled = true;
-                    btn.style.opacity = '0.5';
-                    btn.style.cursor = 'not-allowed';
-                });
-                
-                document.getElementById('confirmScoreBtn').disabled = true;
-                document.getElementById('confirmScoreBtn').style.opacity = '0.5';
-                document.getElementById('confirmScoreBtn').style.cursor = 'not-allowed';
+                // SCHAKEL DE SCORE KNOPPEN UIT
+                disableScoreButtons();
                 
                 document.querySelectorAll('.dynamic-needed').forEach(el => el.remove());
                 updateScoringPage();
             }
-
             function updateScoringPage() {
                 const player1Card = document.getElementById('player1Card');
                 const player2Card = document.getElementById('player2Card');
@@ -3667,6 +3696,7 @@
     </script>
 </body>
 </html>
+
 
 
 
