@@ -251,20 +251,20 @@
             align-items: stretch;
         }
         
+        .current-turn-container {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        
         .current-turn {
             text-align: center;
             font-size: 1.2em;
-            padding: 15px 25px; /* Redelijke padding */
+            padding: 12px 25px;
             background: rgba(52, 152, 219, 0.2);
             border-radius: 10px;
-            border: 3px solid #3498db;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            /* VERWIJDERD: min-width en flex-grow */
-            width: auto; /* Breedte past bij inhoud */
-            min-height: 80px; /* Minimale hoogte */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 2px solid #3498db;
+            min-width: 300px;
         }
         /* Voor nabeurt situaties (meer inhoud) */
         .current-turn.has-extra-info {
@@ -1714,13 +1714,6 @@
                     currentTurn.classList.remove('has-extra-info');
                 }
                 
-                // Optioneel: pas font size aan voor lange namen
-                const currentName = state.currentPlayer === 1 ? state.currentMatch.p1 : state.currentMatch.p2;
-                if (currentName.length > 20) {
-                    currentTurn.style.fontSize = '1em';
-                } else {
-                    currentTurn.style.fontSize = '1.2em';
-                }
             }
 
             
@@ -2428,8 +2421,6 @@
                 const player2Card = document.getElementById('player2Card');
                 const headerDiv = document.querySelector('#page5 .header div:first-child');
                 const totalTurns = state.player1.turns.length + state.player2.turns.length;
-
-                updateCurrentTurnSize();
                 
                 if (state.matchEnded || totalTurns === 0) {
                     headerDiv.style.display = 'block';  // Toon knoppen
@@ -2455,6 +2446,8 @@
                     player1Card.classList.add('player-inactive');
                     player2Card.classList.add('player-active');
                 }
+
+                updateCurrentTurnSize();
                 
                 const avg1 = state.player1.turns.length > 0 ? 
                     (state.player1.score / state.player1.turns.length).toFixed(2) : '0.00';
@@ -3812,6 +3805,7 @@
     </script>
 </body>
 </html>
+
 
 
 
